@@ -1,7 +1,7 @@
 from datetime import datetime
 from enum import Enum
 
-from user import User
+from entity.user import User
 
 
 class EventStatusName(Enum):
@@ -32,15 +32,15 @@ class Event:
                  is_public: bool,
                  capacity: int,
                  price: float,
-                 person: User,
+                 creation_user_id: str,
                  event_status: EventStatus,
-                 registered_user_ids: list[int],
+                 registered_user_ids: list[str],
                  id=None):
         self.id = id
         self.name = name
         self.description = description
         self.creation_date = creation_date
-        self.creation_user_ids = person.id
+        self.creation_user_id = creation_user_id
         self.registration_end_date = registration_end_date
         self.start_datetime = start_datetime
         self.end_datetime = end_datetime
@@ -48,8 +48,11 @@ class Event:
         self.is_public = is_public
         self.capacity = capacity
         self.price = price
-        self.status_id = event_status.id
+        self.status_name = event_status.name
         self.registered_user_ids = registered_user_ids
+
+    def get_formatted_str(self):
+        return f'| {str(self.id):24s} | {self.name:30.30s} | {self.description:40.40s} |  {str(self.creation_date.astimezone()):20.20s} | {str(self.place):15.15s} |'
 
 
 class InvitationResponseTypeName(Enum):
