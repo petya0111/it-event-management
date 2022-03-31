@@ -1,1 +1,2 @@
-# IT events managment project baased in Python and GUI Tkinter (Desktop UI)
+# IT events managment project 
+Project based in Python; GUI Tkinter (Desktop UI); persistence in files json format
