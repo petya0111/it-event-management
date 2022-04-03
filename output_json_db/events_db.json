@@ -1,0 +1,26 @@
+[
+    {
+        "id": "af3ee604-b358-11ec-a321-2c6e85088ae9",
+        "name": "Latest trends of pytthon",
+        "description": "Get to know latest trends in clean code",
+        "creation_date": "2022-02-22 10:30:00",
+        "registration_end_date": "2022-04-22 11:00:00",
+        "start_datetime": "2022-04-22 10:30:00",
+        "end_datetime": "2022-04-22 18:30:00",
+        "place": "Online",
+        "is_public": true,
+        "capacity": 300,
+        "price": 0,
+        "creation_user_id": "af3ee603-b358-11ec-a79d-2c6e85088ae9",
+        "event_status": {
+            "name": "OPEN_FOR_REGISTRATIONS",
+            "_module": "entity.event",
+            "_class": "EventStatusName"
+        },
+        "registered_user_ids": [
+            "af3ee602-b358-11ec-a44c-2c6e85088ae9"
+        ],
+        "_module": "entity.event",
+        "_class": "Event"
+    }
+]

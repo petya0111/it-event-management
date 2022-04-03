@@ -1,0 +1,38 @@
+[
+    {
+        "id": "af3e229f-b358-11ec-a347-2c6e85088ae9",
+        "email": "ivo@abc.bg",
+        "password": "Test123",
+        "first_name": "Maria",
+        "last_name": "Georgieva",
+        "bio": "Passionate Python Dev",
+        "role": "ADMIN",
+        "is_active": true,
+        "_module": "entity.user",
+        "_class": "User"
+    },
+    {
+        "id": "af3ee602-b358-11ec-a44c-2c6e85088ae9",
+        "email": "dimitar@abc.bg",
+        "password": "Test123",
+        "first_name": "Dimitar",
+        "last_name": "Hristov",
+        "bio": "Backend Dev",
+        "role": "GUEST",
+        "is_active": true,
+        "_module": "entity.user",
+        "_class": "User"
+    },
+    {
+        "id": "af3ee603-b358-11ec-a79d-2c6e85088ae9",
+        "email": "ivo@abc.bg",
+        "password": "Test123",
+        "first_name": "Ivan",
+        "last_name": "Petrov",
+        "bio": "Passionate Python Dev",
+        "role": "HOST",
+        "is_active": true,
+        "_module": "entity.user",
+        "_class": "User"
+    }
+]
