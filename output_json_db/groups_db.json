@@ -1,16 +1,16 @@
 [
     {
-        "id": "901c7040-b36c-11ec-99d6-2c6e85088ae9",
+        "id": "875c00c3-b387-11ec-8ce7-2c6e85088ae9",
         "name": "Python",
         "description": "python user group of professionals",
         "user_ids": [
-            "901c4935-b36c-11ec-b72e-2c6e85088ae9"
+            "875c00c0-b387-11ec-83a4-2c6e85088ae9"
         ],
         "event_ids": [
-            "901c703f-b36c-11ec-9599-2c6e85088ae9"
+            "875c00c2-b387-11ec-8291-2c6e85088ae9"
         ],
         "allowed_event_ids_for_group": [
-            "901c703f-b36c-11ec-9599-2c6e85088ae9"
+            "875c00c2-b387-11ec-8291-2c6e85088ae9"
         ],
         "_module": "entity.group",
         "_class": "Group"

@@ -4,7 +4,7 @@ from dao.event_repository import EventRepository
 from entity.event import Event, EventStatusName, EventPost, EventInvitation, InvitationResponseTypeName, EventTicket
 from entity.user import User, RoleName
 from exception.already_registered_for_event_exception import AlreadyRegisteredForEventExcetion
-from exception.not_host_creation_event_exception import NotHostCreationEventException
+from exception.not_host_modification_event_exception import NotHostCreationEventException
 from exception.not_permitted_to_register_exception import NotPermittedToRegisterException
 
 
@@ -12,19 +12,22 @@ class EventService(EventRepository):
     def __init__(self):
         super().__init__()
 
-    def create_event_from_host(self, user: User, event: Event):
-        if user.role != RoleName.HOST:
+    def check_permitted_to_modify(self, host: User):
+        if host.role not in [RoleName.HOST, RoleName.ADMIN]:
             raise NotHostCreationEventException()
+
+    def create_event_from_host(self, user: User, event: Event):
+        self.check_permitted_to_modify(user)
         event.creation_user_id = user.id
         event.status_name = EventStatusName.OPEN_FOR_REGISTRATIONS
         self.create(event)
 
     def update_event_from_host(self, user: User, event: Event):
-        if user.role != RoleName.HOST:
-            raise NotHostCreationEventException()
+        self.check_permitted_to_modify(user)
         self.update(event)
 
-    def add_event_post(self, event_id: str, event_post: EventPost):
+    def add_event_post(self, user: User, event_id: str, event_post: EventPost):
+        self.check_permitted_to_modify(user)
         event: Event = self.find_by_id(event_id)
         event.event_post = event_post
         self.update(event)
@@ -54,9 +57,8 @@ class EventService(EventRepository):
     def register_for_event(self, event: Event, user: User, paid_date: datetime, is_paid: bool):
         user_id = user.id
         self.check_if_already_registered_in_event(user_id, event)
-        if event.status_name == EventStatusName.CLOSED_TO_REGISTRATIONS:
+        if event.status_name != EventStatusName.OPEN_FOR_REGISTRATIONS:
             raise NotPermittedToRegisterException()
-
         event.event_ticket = EventTicket(event_id=event.id, text=event.event_post.text, paid_date=paid_date,
                                          is_paid=is_paid)
         event.event_ticket.owner_ids.append(user_id)

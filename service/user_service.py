@@ -1,5 +1,5 @@
 from dao.user_repository import UserRepository
-from entity.user import RoleName, User
+from entity.user import  User
 
 
 class UserService(UserRepository):

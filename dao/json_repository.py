@@ -4,8 +4,8 @@ from dao.repository import Repository
 
 
 class JsonRepository(Repository):
-    def __init__(self, idGenerator, db_filename):
-        super().__init__(idGenerator)
+    def __init__(self, id_generator, db_filename):
+        super().__init__(id_generator)
         self.db_filename = db_filename
 
     def save(self):

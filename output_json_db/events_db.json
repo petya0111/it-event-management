@@ -1,6 +1,6 @@
 [
     {
-        "id": "901c703f-b36c-11ec-9599-2c6e85088ae9",
+        "id": "875c00c2-b387-11ec-8291-2c6e85088ae9",
         "name": "Latest trends of pytthon",
         "description": "Get to know latest trends in clean code",
         "creation_date": "2022-02-22 10:30:00",
@@ -11,27 +11,27 @@
         "is_public": true,
         "capacity": 300,
         "price": 0,
-        "creation_user_id": "901c4936-b36c-11ec-8d02-2c6e85088ae9",
+        "creation_user_id": "875c00c1-b387-11ec-a471-2c6e85088ae9",
         "event_status": {
             "name": "OPEN_FOR_REGISTRATIONS",
             "_module": "entity.event",
             "_class": "EventStatusName"
         },
         "registered_user_ids": [
-            "901c4935-b36c-11ec-b72e-2c6e85088ae9"
+            "875c00c0-b387-11ec-83a4-2c6e85088ae9"
         ],
         "event_post": {
-            "event_id": "901c703f-b36c-11ec-9599-2c6e85088ae9",
+            "event_id": "875c00c2-b387-11ec-8291-2c6e85088ae9",
             "text": "Registrate to our new latest event for python",
             "creation_date": "2022-01-22 10:30:00",
-            "creation_user": "901c4936-b36c-11ec-8d02-2c6e85088ae9",
+            "creation_user": "875c00c1-b387-11ec-a471-2c6e85088ae9",
             "_module": "entity.event",
             "_class": "EventPost"
         },
         "event_ticket": {
-            "event_id": "901c703f-b36c-11ec-9599-2c6e85088ae9",
+            "event_id": "875c00c2-b387-11ec-8291-2c6e85088ae9",
             "owner_ids": [
-                "901c4935-b36c-11ec-b72e-2c6e85088ae9"
+                "875c00c0-b387-11ec-83a4-2c6e85088ae9"
             ],
             "text": "Registrate to our new latest event for python",
             "paid_date": "2022-01-24 12:30:00",
@@ -40,8 +40,8 @@
             "_class": "EventTicket"
         },
         "event_invitation": {
-            "event_id": "901c703f-b36c-11ec-9599-2c6e85088ae9",
-            "user_id": "901c4935-b36c-11ec-b72e-2c6e85088ae9",
+            "event_id": "875c00c2-b387-11ec-8291-2c6e85088ae9",
+            "user_id": "875c00c0-b387-11ec-83a4-2c6e85088ae9",
             "sent_date": "2022-01-23 10:30:00",
             "invitation_response": {
                 "name": "ACCEPT",
