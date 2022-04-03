@@ -1,6 +1,6 @@
 [
     {
-        "id": "af3ee604-b358-11ec-a321-2c6e85088ae9",
+        "id": "901c703f-b36c-11ec-9599-2c6e85088ae9",
         "name": "Latest trends of pytthon",
         "description": "Get to know latest trends in clean code",
         "creation_date": "2022-02-22 10:30:00",
@@ -11,15 +11,48 @@
         "is_public": true,
         "capacity": 300,
         "price": 0,
-        "creation_user_id": "af3ee603-b358-11ec-a79d-2c6e85088ae9",
+        "creation_user_id": "901c4936-b36c-11ec-8d02-2c6e85088ae9",
         "event_status": {
             "name": "OPEN_FOR_REGISTRATIONS",
             "_module": "entity.event",
             "_class": "EventStatusName"
         },
         "registered_user_ids": [
-            "af3ee602-b358-11ec-a44c-2c6e85088ae9"
+            "901c4935-b36c-11ec-b72e-2c6e85088ae9"
         ],
+        "event_post": {
+            "event_id": "901c703f-b36c-11ec-9599-2c6e85088ae9",
+            "text": "Registrate to our new latest event for python",
+            "creation_date": "2022-01-22 10:30:00",
+            "creation_user": "901c4936-b36c-11ec-8d02-2c6e85088ae9",
+            "_module": "entity.event",
+            "_class": "EventPost"
+        },
+        "event_ticket": {
+            "event_id": "901c703f-b36c-11ec-9599-2c6e85088ae9",
+            "owner_ids": [
+                "901c4935-b36c-11ec-b72e-2c6e85088ae9"
+            ],
+            "text": "Registrate to our new latest event for python",
+            "paid_date": "2022-01-24 12:30:00",
+            "is_paid": false,
+            "_module": "entity.event",
+            "_class": "EventTicket"
+        },
+        "event_invitation": {
+            "event_id": "901c703f-b36c-11ec-9599-2c6e85088ae9",
+            "user_id": "901c4935-b36c-11ec-b72e-2c6e85088ae9",
+            "sent_date": "2022-01-23 10:30:00",
+            "invitation_response": {
+                "name": "ACCEPT",
+                "_module": "entity.event",
+                "_class": "InvitationResponseTypeName"
+            },
+            "text_response": "Many thanks I will participate for sure",
+            "response_date": "2022-01-24 10:30:00",
+            "_module": "entity.event",
+            "_class": "EventInvitation"
+        },
         "_module": "entity.event",
         "_class": "Event"
     }
