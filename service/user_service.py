@@ -2,24 +2,30 @@ from dao.user_repository import UserRepository
 from entity.user import  User
 
 
-class UserService(UserRepository):
-    def __init__(self):
-        super().__init__()
+class UserService():
+    def __init__(self, user_repository: UserRepository):
+        self._user_repository = user_repository
+
+    def create(self, user: User):
+        self._user_repository.create(user)
 
     def find_all_users(self):
-        self.find_all()
+        self._user_repository.find_all()
 
     def register(self, user: User):
-        self.create(user)
+        self._user_repository.create(user)
 
     def update_data(self, user: User):
-        self.update(user)
+        self._user_repository.update(user)
 
     def find_user_by_email(self, email: str):
-        self.find_by_user_email(email)
+        self._user_repository.find_by_email(email)
 
-    def save_json(self):
-        self.save()
+    def find_all(self):
+        self._user_repository.find_all()
 
-    def load_json(self):
-        self.load()
+    def save(self):
+        self._user_repository.save()
+
+    def load(self):
+        self._user_repository.load()

@@ -1,17 +1,23 @@
 [
     {
-        "id": "875c00c3-b387-11ec-8ce7-2c6e85088ae9",
-        "name": "Python",
+        "id": "3925b45f-b506-11ec-ac8b-2c6e85088ae9",
+        "name": "Python Advanced",
         "description": "python user group of professionals",
-        "user_ids": [
-            "875c00c0-b387-11ec-83a4-2c6e85088ae9"
-        ],
-        "event_ids": [
-            "875c00c2-b387-11ec-8291-2c6e85088ae9"
-        ],
+        "user_ids": [],
+        "event_ids": [],
         "allowed_event_ids_for_group": [
-            "875c00c2-b387-11ec-8291-2c6e85088ae9"
+            "392650c4-b506-11ec-8316-2c6e85088ae9"
         ],
+        "_module": "entity.group",
+        "_class": "Group"
+    },
+    {
+        "id": "392650c0-b506-11ec-87d1-2c6e85088ae9",
+        "name": "Python Devs Beginners",
+        "description": "Python Group",
+        "user_ids": [],
+        "event_ids": [],
+        "allowed_event_ids_for_group": [],
         "_module": "entity.group",
         "_class": "Group"
     }

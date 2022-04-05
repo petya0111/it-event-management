@@ -8,9 +8,9 @@ from exception.not_host_modification_event_exception import NotHostCreationEvent
 from exception.not_permitted_to_register_exception import NotPermittedToRegisterException
 
 
-class EventService(EventRepository):
-    def __init__(self):
-        super().__init__()
+class EventService():
+    def __init__(self, event_repository: EventRepository):
+        self._event_repository = event_repository
 
     def check_permitted_to_modify(self, host: User):
         if host.role not in [RoleName.HOST, RoleName.ADMIN]:
@@ -20,35 +20,35 @@ class EventService(EventRepository):
         self.check_permitted_to_modify(user)
         event.creation_user_id = user.id
         event.status_name = EventStatusName.OPEN_FOR_REGISTRATIONS
-        self.create(event)
+        self._event_repository.create(event)
 
     def update_event_from_host(self, user: User, event: Event):
         self.check_permitted_to_modify(user)
-        self.update(event)
+        self._event_repository.update(event)
 
     def add_event_post(self, user: User, event_id: str, event_post: EventPost):
         self.check_permitted_to_modify(user)
-        event: Event = self.find_by_id(event_id)
+        event: Event = self._event_repository.find_by_id(event_id)
         event.event_post = event_post
-        self.update(event)
+        self._event_repository.update(event)
 
     def respond_event_invitation(self, event_id: str, text_response: str, response_date: datetime,
                                  invitation_response: InvitationResponseTypeName):
-        event: Event = self.find_by_id(event_id)
+        event: Event = self._event_repository.find_by_id(event_id)
         event.event_invitation.text_response = text_response
         event.event_invitation.response_date = response_date
         event.event_invitation.invitation_response = invitation_response
-        self.update(event)
+        self._event_repository.update(event)
 
     def send_event_invitation(self, event_id: str, event_invitation: EventInvitation):
-        event: Event = self.find_by_id(event_id)
+        event: Event = self._event_repository.find_by_id(event_id)
         event.event_invitation = event_invitation
-        self.update(event)
+        self._event_repository.update(event)
 
     def take_ticket(self, event_id: str, event_ticket: EventTicket):
-        event: Event = self.find_by_id(event_id)
+        event: Event = self._event_repository.find_by_id(event_id)
         event.event_ticket = event_ticket
-        self.update(event)
+        self._event_repository.update(event)
 
     def check_if_already_registered_in_event(self, user_id: str, event: Event):
         if user_id in event.registered_user_ids:
@@ -63,10 +63,13 @@ class EventService(EventRepository):
                                          is_paid=is_paid)
         event.event_ticket.owner_ids.append(user_id)
         event.registered_user_ids.append(user_id)
-        self.update(event)
+        self._event_repository.update(event)
 
-    def save_json(self):
-        self.save()
+    def find_all(self):
+        return self._event_repository.find_all()
 
-    def load_json(self):
-        self.load()
+    def save(self):
+        self._event_repository.save()
+
+    def load(self):
+        self._event_repository.load()

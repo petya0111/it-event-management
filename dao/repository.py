@@ -5,6 +5,7 @@ from exception.entity_not_found_exception import EntityNotFoundException
 
 class RepositoryIterator(Iterator):
     """Iterates the repository elements"""
+
     def __init__(self, iterable):
         self._nextIndex = 0
         self._values = list(iterable)
@@ -19,6 +20,7 @@ class RepositoryIterator(Iterator):
 
 class Repository:
     """Provides lifecycle (CRUD) operations for specific type of entity"""
+
     def __init__(self, idGenerator):
         """Initializes the repository with provided idGenerator as dependency"""
         self._entities: dict = {}
@@ -32,7 +34,7 @@ class Repository:
         return self
 
     def __iter__(self):
-        #return iter(self._entities.values())
+        # return iter(self._entities.values())
         # return RepositoryIterator(self._entities.values())
         for entity in self._entities.values():
             yield entity

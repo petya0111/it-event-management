@@ -1,12 +1,15 @@
-from entity.group import Group
-from entity.event import Event, EventStatusName, EventPost, EventInvitation, InvitationResponseTypeName
-from entity.user import RoleName, User
 from datetime import datetime
 
+from dao.event_repository import EventRepository
+from dao.group_repository import GroupRepository
+from dao.id_generator_uuid import IdGeneratorUuid
+from dao.user_repository import UserRepository
+from entity.event import Event, EventStatusName, EventPost, EventInvitation, InvitationResponseTypeName
+from entity.group import Group
+from entity.user import RoleName, User
 from service.event_service import EventService
 from service.group_service import GroupService
 from service.user_service import UserService
-from dao.id_generator_uuid import IdGeneratorUuid
 
 
 def print_repo_entity(repo):
@@ -15,28 +18,36 @@ def print_repo_entity(repo):
 
 
 if __name__ == '__main__':
-    user_service = UserService()
-    event_service = EventService()
-    group_service = GroupService()
 
-    python_devs_group = Group(name="Python", description="Python Group", user_ids=[], event_ids=[])
+    user_repository = UserRepository(IdGeneratorUuid(),'output_json_db/users_db.json')
+    user_service = UserService(user_repository)
+    event_repo = EventRepository(IdGeneratorUuid(),'output_json_db/events_db.json')
+    event_service = EventService(event_repo)
+    group_repo = GroupRepository(IdGeneratorUuid(),'output_json_db/groups_db.json')
+    group_service = GroupService(group_repo)
+
+    python_devs_group = Group(name="Python Devs Beginners", description="Python Group", user_ids=[], event_ids=[])
+    python_group = Group(name="Python Advanced", description="python user group of professionals",user_ids= [], event_ids=[])
+
+    group_service.create(python_group)
+    group_service.create(python_devs_group)
 
     admin11 = User(first_name='Maria', last_name='Georgieva', email="ivo@abc.bg", password="Test123",
                    bio="Passionate Python Dev",
                    is_active=True,
-                   role=RoleName.ADMIN, group=python_devs_group)
+                   role=RoleName.ADMIN, group_id=python_devs_group.id)
     host1 = User(first_name='Ivan', last_name='Petrov', email="ivo@abc.bg", password="Test123",
                  bio="Passionate Python Dev", is_active=True,
-                 role=RoleName.HOST, group=python_devs_group)
+                 role=RoleName.HOST, group_id=python_devs_group.id)
     guest1 = User(first_name='Dimitar', last_name='Hristov', email="dimitar@abc.bg", password="Test123",
                   bio="Backend Dev", is_active=True,
-                  role=RoleName.GUEST, group=python_devs_group)
+                  role=RoleName.GUEST, group_id=python_devs_group.id)
 
     users = [admin11, guest1, host1]
     for u in users:
         user_service.create(u)
     print("---Users---")
-    print_repo_entity(user_service)
+    print_repo_entity(user_repository)
 
     python_latest_trends = Event(name="Latest trends of pytthon", description="Get to know latest trends in clean code",
                                  creation_date=datetime.fromisoformat('2022-02-22T10:30:00'),
@@ -56,26 +67,26 @@ if __name__ == '__main__':
                                                                            text="Registrate to our new latest event for python",
                                                                            creation_date=datetime.fromisoformat(
                                                                                '2022-01-22T10:30:00'),
-                                                                           creation_user=host1.id))
+                                                                           creation_user_id=host1.id))
     event_service.send_event_invitation(python_latest_trends.id,
                                         EventInvitation(event_id=python_latest_trends.id,
                                                         user_id=guest1.id,
                                                         sent_date=datetime.fromisoformat('2022-01-23T10:30:00')))
-    python_group = Group("Python",
-                         "python user group of professionals",
-                         [guest1.id],
-                         [python_latest_trends.id])
-
-    group_service.create(python_group)
+    print(python_group.name)
+    found_group: Group = group_service.find_by_name("Python Advanced")
+    if found_group is not None:
+        found_group.user_ids = [guest1.id]
+        found_group.event_ids = [python_latest_trends.id]
+        group_service.update(found_group)
     group_service.allow_event_in_group(python_latest_trends.id, python_group.id)
     allowed: bool = group_service.check_event_allowed_group(str(python_group.id), str(python_latest_trends.id))
     print("Allowed event for group: ", allowed)
 
     print("--- Events -----")
-    print_repo_entity(event_service)
+    print_repo_entity(event_repo)
 
     print("---Groups---")
-    print_repo_entity(group_service)
+    print_repo_entity(group_repo)
     # user responds invitation
     event_service.respond_event_invitation(event_id=python_latest_trends.id,
                                            text_response="Many thanks I will participate for sure",
@@ -88,10 +99,10 @@ if __name__ == '__main__':
     group_service.save()
     user_service.save()
 
-    # user_service.load()
-    # group_service.load()
-    # event_service.load()
-    # print('\n', 'After Loading:')
-    # print_repo_entity(user_service.find_all())
-    # print_repo_entity(event_service.find_all())
-    # print_repo_entity(user_service.find_all())
+    user_service.load()
+    group_service.load()
+    event_service.load()
+    print('\n', 'After Loading:')
+    print_repo_entity(user_repository.find_all())
+    print_repo_entity(event_repo.find_all())
+    print_repo_entity(group_repo.find_all())
