@@ -42,16 +42,16 @@ class EventMainView(ttk.Frame):
         # add buttons
         buttons_frame = ttk.Frame(self, padding="20 10 20 10")
         buttons_frame.grid(column=0, row=1, sticky="nsew")
-        self.add_button = ttk.Button(buttons_frame, text="Add Book", padding=10,
+        self.add_button = ttk.Button(buttons_frame, text="Add Event", padding=10,
                                      command=self.show_add_book_command)
-        self.add_button.grid(column=1, row=0, sticky=(N, E), padx=40, pady=20)
+        self.add_button.grid(column=1, row=0, sticky="NE", padx=40, pady=20)
 
-        self.add_button = ttk.Button(buttons_frame, text="Edit Book", padding=10,
+        self.add_button = ttk.Button(buttons_frame, text="Edit Event", padding=10,
                                      command=self.edit_book_command)
-        self.add_button.grid(column=2, row=0, sticky=(N, E), padx=40, pady=20)
-        self.add_button = ttk.Button(buttons_frame, text="Delete Books", padding=10,
+        self.add_button.grid(column=2, row=0, sticky="NE", padx=40, pady=20)
+        self.add_button = ttk.Button(buttons_frame, text="Delete Events", padding=10,
                                      command=self.delete_selected)
-        self.add_button.grid(column=3, row=0, sticky=(N, E), padx=40, pady=20)
+        self.add_button.grid(column=3, row=0, sticky="NE", padx=40, pady=20)
 
         rows, cols = buttons_frame.grid_size()
         for col in range(cols):

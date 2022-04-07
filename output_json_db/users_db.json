@@ -1,6 +1,6 @@
 [
     {
-        "id": "b5744332-b66f-11ec-8279-2c6e85088ae9",
+        "id": "a63586df-b679-11ec-b1bb-2c6e85088ae9",
         "email": "ivo@abc.bg",
         "password": "Test123",
         "first_name": "Maria",
@@ -12,7 +12,7 @@
         "_class": "User"
     },
     {
-        "id": "b5744333-b66f-11ec-a463-2c6e85088ae9",
+        "id": "a63586e0-b679-11ec-8cbd-2c6e85088ae9",
         "email": "dimitar@abc.bg",
         "password": "Test123",
         "first_name": "Dimitar",
@@ -24,7 +24,7 @@
         "_class": "User"
     },
     {
-        "id": "b5744334-b66f-11ec-8f81-2c6e85088ae9",
+        "id": "a63586e1-b679-11ec-af15-2c6e85088ae9",
         "email": "ivo@abc.bg",
         "password": "Test123",
         "first_name": "Ivan",

@@ -1,6 +1,6 @@
 [
     {
-        "id": "b57491e2-b66f-11ec-877a-2c6e85088ae9",
+        "id": "a635ae4f-b679-11ec-8277-2c6e85088ae9",
         "name": "Latest trends of pytthon",
         "description": "Get to know latest trends in clean code",
         "creation_date": "2022-02-22 10:30:00",
@@ -11,37 +11,37 @@
         "is_public": true,
         "capacity": 300,
         "price": 0,
-        "creation_user_id": "b5744334-b66f-11ec-8f81-2c6e85088ae9",
+        "creation_user_id": "a63586e1-b679-11ec-af15-2c6e85088ae9",
         "event_status": {
             "name": "OPEN_FOR_REGISTRATIONS",
             "_module": "entity.event_meeting",
             "_class": "EventStatusName"
         },
         "registered_user_ids": [
-            "b5744333-b66f-11ec-a463-2c6e85088ae9"
+            "a63586e0-b679-11ec-8cbd-2c6e85088ae9"
         ],
         "event_post": {
-            "event_id": "b57491e2-b66f-11ec-877a-2c6e85088ae9",
+            "event_id": "a635ae4f-b679-11ec-8277-2c6e85088ae9",
             "text": "Registrate to our new latest event for python",
             "creation_date": "2022-01-22 10:30:00",
-            "creation_user_id": "b5744334-b66f-11ec-8f81-2c6e85088ae9",
+            "creation_user_id": "a63586e1-b679-11ec-af15-2c6e85088ae9",
             "_module": "entity.event_meeting",
             "_class": "EventPost"
         },
         "event_ticket": {
-            "event_id": "b57491e2-b66f-11ec-877a-2c6e85088ae9",
+            "event_id": "a635ae4f-b679-11ec-8277-2c6e85088ae9",
             "owner_ids": [
-                "b5744333-b66f-11ec-a463-2c6e85088ae9"
+                "a63586e0-b679-11ec-8cbd-2c6e85088ae9"
             ],
             "text": "Registrate to our new latest event for python",
-            "paid_date": "2022-04-07 15:39:04.360332",
+            "paid_date": "2022-04-07 16:50:13.750660",
             "is_paid": false,
             "_module": "entity.event_meeting",
             "_class": "EventTicket"
         },
         "event_invitation": {
-            "event_id": "b57491e2-b66f-11ec-877a-2c6e85088ae9",
-            "user_id": "b5744333-b66f-11ec-a463-2c6e85088ae9",
+            "event_id": "a635ae4f-b679-11ec-8277-2c6e85088ae9",
+            "user_id": "a63586e0-b679-11ec-8cbd-2c6e85088ae9",
             "sent_date": "2022-01-23 10:30:00",
             "invitation_response": {
                 "name": "ACCEPT",

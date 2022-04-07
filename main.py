@@ -113,16 +113,18 @@ if __name__ == '__main__':
     print_repo_entity(event_repo.find_all())
     print_repo_entity(group_repo.find_all())
 
-    # root = Tk()
-    # center_resize_window(root, 800, 400)
-    # root.columnconfigure(0, weight=1)
-    # root.rowconfigure(0, weight=1)
-    #
-    # event_controller = EventController(event_service)
-    # event_controller.reload_events()
-    #
-    # main_view = MainView(root, event_controller)
-    # event_controller.view = main_view
-    #
-    # # Start the app event loop
-    # root.mainloop()
+    root = Tk()
+    root.maxsize(1200, 1000)
+    center_resize_window(root, 800, 400)
+    root.columnconfigure(0, weight=1)
+    root.rowconfigure(0, weight=1)
+
+    event_controller = EventController(event_service)
+    event_controller.reload_events()
+
+    main_view = MainView(root, event_controller)
+    event_controller.view = main_view
+
+
+    # Start the app event loop
+    root.mainloop()

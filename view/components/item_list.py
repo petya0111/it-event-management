@@ -26,8 +26,9 @@ class ItemList(ttk.Frame):
 
         # add vertical scrollbar
         vsb = ttk.Scrollbar(self, orient=VERTICAL, command=self.tree.yview)
-        vsb.grid(row=0, column=1, sticky=(N, W, S), padx=0)
-        self.tree.configure(yscroll=vsb.set)
+        hsb = ttk.Scrollbar(self, orient=HORIZONTAL, command=self.tree.xview)
+        hsb.grid(row=0, column=1, sticky="NWS", padx=0)
+        self.tree.configure(yscrollcommand=hsb.set, xscrollcommand=vsb.set)
 
         # resize the parent window to show treeview widget
         self.tree.update_idletasks()

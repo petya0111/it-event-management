@@ -39,9 +39,9 @@ class Repository:
         for entity in self._entities.values():
             yield entity
 
-    def find_all(self):
+    def find_all(self)->list:
         """Returns all entities in the repository"""
-        return self._entities.values()
+        return list(self._entities.values())
 
     def find_by_id(self, id):
         """
