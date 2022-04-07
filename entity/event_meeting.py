@@ -229,7 +229,7 @@ class EventStatusName(Enum):
         }
 
 
-class Event:
+class EventMeeting:
 
     def __init__(self,
                  name: str = None,
@@ -243,7 +243,7 @@ class Event:
                  capacity: int = None,
                  price: float = None,
                  event_status: EventStatusName = EventStatusName.DRAFT,
-                 registered_user_ids: list[str] = None,
+                 registered_user_ids: list[str] = tuple(),
                  event_post: EventPost = None,
                  event_ticket: EventTicket = None,
                  event_invitation: EventInvitation = None,

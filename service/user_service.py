@@ -29,3 +29,9 @@ class UserService():
 
     def load(self):
         self._user_repository.load()
+
+    def find_by_email(self, email):
+        self._user_repository.find_by_email(email)
+
+    def update(self, user):
+        self._user_repository.update(user)
