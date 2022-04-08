@@ -1,7 +1,6 @@
 from enum import Enum
 
 
-
 class RoleName(Enum):
     ADMIN = 1,
     HOST = 2,

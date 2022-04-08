@@ -1,6 +1,6 @@
 [
     {
-        "id": "4e407446-b73a-11ec-b01c-2c6e85088ae9",
+        "id": "e4e99848-b73c-11ec-927a-2c6e85088ae9",
         "name": "Latest trends of pytthon",
         "description": "Get to know latest trends in clean code",
         "registration_end_date": "2022-04-22 11:00:00",
@@ -10,14 +10,10 @@
         "is_public": true,
         "capacity": 300,
         "price": 0,
-        "creation_user_id": "4e407445-b73a-11ec-aba9-2c6e85088ae9",
-        "event_status": {
-            "name": "OPEN_FOR_REGISTRATIONS",
-            "_module": "entity.event_meeting",
-            "_class": "EventStatusName"
-        },
+        "creation_user_id": "e4e99847-b73c-11ec-83e3-2c6e85088ae9",
+        "event_status": "OPEN_FOR_REGISTRATIONS",
         "registered_user_ids": [
-            "4e407444-b73a-11ec-b86f-2c6e85088ae9"
+            "e4e99846-b73c-11ec-b1a0-2c6e85088ae9"
         ],
         "_module": "entity.event_meeting",
         "_class": "EventMeeting"

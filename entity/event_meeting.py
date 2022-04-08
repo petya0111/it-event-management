@@ -259,7 +259,7 @@ class EventMeeting:
         self.is_public = is_public
         self.capacity = capacity
         self.price = price
-        self.status_name = event_status.name
+        self.status_name = event_status
         self.registered_user_ids = registered_user_ids
         # self.event_post = event_post
         # self.event_ticket = event_ticket
@@ -278,7 +278,7 @@ class EventMeeting:
             "capacity": self.capacity,
             "price": self.price,
             "creation_user_id": self.creation_user_id,
-            "event_status": self.status_name,
+            "event_status": self.status_name.name,
             "registered_user_ids": self.registered_user_ids,
             # "event_post": self.event_post,
             # "event_ticket": self.event_ticket,
