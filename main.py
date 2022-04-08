@@ -1,5 +1,6 @@
 from datetime import datetime
 
+from controller.credentals_controller import CredentialsController
 from controller.event_controller import EventController
 from dao.event_repository import EventRepository
 from dao.group_repository import GroupRepository
@@ -10,8 +11,9 @@ from entity.group import Group
 from entity.user import RoleName, User
 from service.event_service import EventService
 from service.group_service import GroupService
+from service.credentials_service import CredentialsService
 from service.user_service import UserService
-from view.main_view import MainView
+from view.components.main_credentials_view import MainCredentialsView
 from tkinter import *
 
 from view.utils.tkinter_utils import center_resize_window
@@ -57,7 +59,7 @@ if __name__ == '__main__':
 
     python_latest_trends = EventMeeting(name="Latest trends of pytthon",
                                         description="Get to know latest trends in clean code",
-                                        creation_date=datetime.fromisoformat('2022-02-22T10:30:00'),
+                                        # creation_date=datetime.fromisoformat('2022-02-22T10:30:00'),
                                         registration_end_date=datetime.fromisoformat('2022-04-22T11:00:00'),
                                         start_datetime=datetime.fromisoformat('2022-04-22T10:30:00'),
                                         end_datetime=datetime.fromisoformat('2022-04-22T18:30:00'),
@@ -70,11 +72,11 @@ if __name__ == '__main__':
                                         registered_user_ids=[])
 
     event_service.create_event_from_host(host1.id, python_latest_trends)
-    event_service.add_event_post(host1.id, python_latest_trends.id, EventPost(event_id=python_latest_trends.id,
-                                                                              text="Registrate to our new latest event for python",
-                                                                              creation_date=datetime.fromisoformat(
-                                                                                  '2022-01-22T10:30:00'),
-                                                                              creation_user_id=host1.id))
+    # event_service.add_event_post(host1.id, python_latest_trends.id, EventPost(event_id=python_latest_trends.id,
+    #                                                                           text="Registrate to our new latest event for python",
+    #                                                                           creation_date=datetime.fromisoformat(
+    #                                                                               '2022-01-22T10:30:00'),
+    #                                                                           creation_user_id=host1.id))
     event_service.send_event_invitation(python_latest_trends.id,
                                         EventInvitation(event_id=python_latest_trends.id,
                                                         user_id=guest1.id,
@@ -95,10 +97,10 @@ if __name__ == '__main__':
     print("---Groups---")
     print_repo_entity(group_repo)
     # user responds invitation
-    event_service.respond_event_invitation(event_id=python_latest_trends.id,
-                                           text_response="Many thanks I will participate for sure",
-                                           response_date=datetime.fromisoformat('2022-01-24T10:30:00'),
-                                           invitation_response=InvitationResponseTypeName.ACCEPT)
+    # event_service.respond_event_invitation(event_id=python_latest_trends.id,
+    #                                        text_response="Many thanks I will participate for sure",
+    #                                        response_date=datetime.fromisoformat('2022-01-24T10:30:00'),
+    #                                        invitation_response=InvitationResponseTypeName.ACCEPT)
     # guest registers to event
     event_service.register_for_event(event_id=python_latest_trends.id, user_id=guest1.id, is_paid=False)
     event_service.save()
@@ -114,17 +116,17 @@ if __name__ == '__main__':
     print_repo_entity(group_repo.find_all())
 
     root = Tk()
-    root.maxsize(1200, 1000)
     center_resize_window(root, 800, 400)
     root.columnconfigure(0, weight=1)
     root.rowconfigure(0, weight=1)
 
     event_controller = EventController(event_service)
-    event_controller.reload_events()
+    credentials_service = CredentialsService(user_repository)
 
-    main_view = MainView(root, event_controller)
-    event_controller.view = main_view
-
-
-    # Start the app event loop
+    credentials_controller = CredentialsController(credentials_service)
+    # ivo@abc.bg
+    # Test123
+    credentials_controller.reload_users()
+    credential_view = MainCredentialsView(root,credentials_controller,event_controller)
+    credentials_controller.view = credential_view
     root.mainloop()

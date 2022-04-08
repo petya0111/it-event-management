@@ -14,15 +14,19 @@ class EventController():
         self.view=view
         self.service = service
 
-    def create_event_from_host(self, user_id: str, event: Event):
+    def create_event_from_host(self, user_id: str, event: EventMeeting):
         self.service.create_event_from_host(user_id, event)
         self.view.refresh()
 
-    def update_event_from_host(self, user_id: str, event: Event):
+    def update_event_from_host(self, user_id: str, event: EventMeeting):
         self.service.update_event_from_host(user_id, event)
 
-    def add_event_post(self, user_id: str, event_id: str, event_post: EventPost):
-        self.service.add_event_post(user_id, event_id, event_post)
+    def delete_event_by_id(self,event_id:list[str]):
+        self.service.delete_by_id(event_id)
+        self.view.refresh()
+
+    # def add_event_post(self, user_id: str, event_id: str, event_post: EventPost):
+    #     self.service.add_event_post(user_id, event_id, event_post)
 
     def respond_event_invitation(self, event_id: str, text_response: str, response_date: datetime,
                                  invitation_response: InvitationResponseTypeName):
@@ -31,8 +35,8 @@ class EventController():
     def send_event_invitation(self, event_id: str, event_invitation: EventInvitation):
         self.service.send_event_invitation(event_id, event_invitation)
 
-    def take_ticket(self, event_id: str, event_ticket: EventTicket):
-        self.service.take_ticket(event_id, event_ticket)
+    # def take_ticket(self, event_id: str, event_ticket: EventTicket):
+    #     self.service.take_ticket(event_id, event_ticket)
 
     def register_for_event(self, event_id: str, user_id: str, is_paid: bool):
         self.service.register_for_event(event_id, user_id, is_paid)
@@ -46,10 +50,10 @@ class EventController():
     def reload_events(self):
         return self.service.load()
 
-    def show_add_book(self):
-        form = ItemForm(self.view,
+    def show_add_event(self,user_id:str):
+        form = ItemForm(self.view,user_id,
                         EventMeeting(name="", description="",
-                                     creation_date=None,
+                                     # creation_date=None,
                                      registration_end_date=None,
                                      start_datetime=None,
                                      end_datetime=None,
@@ -60,4 +64,4 @@ class EventController():
                                      creation_user_id=None,  # TODO
                                      event_status=EventStatusName(EventStatusName.OPEN_FOR_REGISTRATIONS),
                                      registered_user_ids=[]),
-                        AddEventCommand(self))
+                        AddEventCommand(self,user_id))

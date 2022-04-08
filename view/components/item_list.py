@@ -26,9 +26,15 @@ class ItemList(ttk.Frame):
 
         # add vertical scrollbar
         vsb = ttk.Scrollbar(self, orient=VERTICAL, command=self.tree.yview)
-        hsb = ttk.Scrollbar(self, orient=HORIZONTAL, command=self.tree.xview)
-        hsb.grid(row=0, column=1, sticky="NWS", padx=0)
-        self.tree.configure(yscrollcommand=hsb.set, xscrollcommand=vsb.set)
+        vsb.grid(row=0, column=1,sticky="nws",padx=0)
+        self.tree.configure(yscrollcommand=vsb.set)
+
+        hsb = ttk.Scrollbar(self,orient=HORIZONTAL,command=self.tree.xview)
+        hsb.grid(row=1,column=0,sticky=EW,padx=0)
+        self.tree.configure(xscrollcommand=hsb.set)
+        # hsb = ttk.Scrollbar(self, orient=HORIZONTAL, command=self.tree.xview)
+        # hsb.grid(row=0, column=1, sticky="NWS", padx=0)
+        # self.tree.configure(yscrollcommand=hsb.set, xscrollcommand=vsb.set)
 
         # resize the parent window to show treeview widget
         self.tree.update_idletasks()
@@ -53,7 +59,8 @@ class ItemList(ttk.Frame):
         self.items = items
         self.item_pos_ids = list(map(set_item, self.items))
         self.update_idletasks()
-        self.tree.see(self.item_pos_ids[-1])
+        if len(self.item_pos_ids)> 0:
+            self.tree.see(self.item_pos_ids[-1])
 
     def get_selected_tems(self):
         items = []

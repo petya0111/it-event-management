@@ -234,7 +234,6 @@ class EventMeeting:
     def __init__(self,
                  name: str = None,
                  description: str = None,
-                 creation_date: datetime = None,
                  registration_end_date: datetime = None,
                  start_datetime: datetime = None,
                  end_datetime: datetime = None,
@@ -244,15 +243,14 @@ class EventMeeting:
                  price: float = None,
                  event_status: EventStatusName = EventStatusName.DRAFT,
                  registered_user_ids: list[str] = tuple(),
-                 event_post: EventPost = None,
-                 event_ticket: EventTicket = None,
-                 event_invitation: EventInvitation = None,
+                 # event_post: EventPost = None,
+                 # event_ticket: EventTicket = None,
+                 # event_invitation: EventInvitation = None,
                  creation_user_id: str = None,
                  id=None):
         self.id = id
         self.name = name
         self.description = description
-        self.creation_date = str(creation_date)
         self.creation_user_id = creation_user_id
         self.registration_end_date = str(registration_end_date)
         self.start_datetime = str(start_datetime)
@@ -263,16 +261,15 @@ class EventMeeting:
         self.price = price
         self.status_name = event_status.name
         self.registered_user_ids = registered_user_ids
-        self.event_post = event_post
-        self.event_ticket = event_ticket
-        self.event_invitation = event_invitation
+        # self.event_post = event_post
+        # self.event_ticket = event_ticket
+        # self.event_invitation = event_invitation
 
     def to_json(self):
         return {
             'id': self.id,
             'name': self.name,
             "description": self.description,
-            "creation_date": self.creation_date,
             "registration_end_date": self.registration_end_date,
             "start_datetime": self.start_datetime,
             "end_datetime": self.end_datetime,
@@ -283,12 +280,12 @@ class EventMeeting:
             "creation_user_id": self.creation_user_id,
             "event_status": self.status_name,
             "registered_user_ids": self.registered_user_ids,
-            "event_post": self.event_post,
-            "event_ticket": self.event_ticket,
-            "event_invitation": self.event_invitation,
+            # "event_post": self.event_post,
+            # "event_ticket": self.event_ticket,
+            # "event_invitation": self.event_invitation,
             '_module': self.__class__.__module__,
             '_class': self.__class__.__name__
         }
 
     def get_formatted_str(self):
-        return f'| {self.id:24s} | {self.name:30.30s} | {self.description:40.40s} |  {str(self.creation_date):20.20s} | {str(self.place):15.15s} |'
+        return f'| {self.id:24s} | {self.name:30.30s} | {self.description:40.40s} |  {str(self.start_datetime):20.20s} | {str(self.place):15.15s} |'

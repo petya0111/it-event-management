@@ -6,4 +6,4 @@ class ListEventsCommand:
         self.event_controller = event_controller
 
     def __call__(self, *args, **kwargs):
-        print("Listing all books")
+        print("Listing all events")

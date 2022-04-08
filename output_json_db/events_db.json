@@ -1,9 +1,8 @@
 [
     {
-        "id": "a635ae4f-b679-11ec-8277-2c6e85088ae9",
+        "id": "4e407446-b73a-11ec-b01c-2c6e85088ae9",
         "name": "Latest trends of pytthon",
         "description": "Get to know latest trends in clean code",
-        "creation_date": "2022-02-22 10:30:00",
         "registration_end_date": "2022-04-22 11:00:00",
         "start_datetime": "2022-04-22 10:30:00",
         "end_datetime": "2022-04-22 18:30:00",
@@ -11,48 +10,15 @@
         "is_public": true,
         "capacity": 300,
         "price": 0,
-        "creation_user_id": "a63586e1-b679-11ec-af15-2c6e85088ae9",
+        "creation_user_id": "4e407445-b73a-11ec-aba9-2c6e85088ae9",
         "event_status": {
             "name": "OPEN_FOR_REGISTRATIONS",
             "_module": "entity.event_meeting",
             "_class": "EventStatusName"
         },
         "registered_user_ids": [
-            "a63586e0-b679-11ec-8cbd-2c6e85088ae9"
+            "4e407444-b73a-11ec-b86f-2c6e85088ae9"
         ],
-        "event_post": {
-            "event_id": "a635ae4f-b679-11ec-8277-2c6e85088ae9",
-            "text": "Registrate to our new latest event for python",
-            "creation_date": "2022-01-22 10:30:00",
-            "creation_user_id": "a63586e1-b679-11ec-af15-2c6e85088ae9",
-            "_module": "entity.event_meeting",
-            "_class": "EventPost"
-        },
-        "event_ticket": {
-            "event_id": "a635ae4f-b679-11ec-8277-2c6e85088ae9",
-            "owner_ids": [
-                "a63586e0-b679-11ec-8cbd-2c6e85088ae9"
-            ],
-            "text": "Registrate to our new latest event for python",
-            "paid_date": "2022-04-07 16:50:13.750660",
-            "is_paid": false,
-            "_module": "entity.event_meeting",
-            "_class": "EventTicket"
-        },
-        "event_invitation": {
-            "event_id": "a635ae4f-b679-11ec-8277-2c6e85088ae9",
-            "user_id": "a63586e0-b679-11ec-8cbd-2c6e85088ae9",
-            "sent_date": "2022-01-23 10:30:00",
-            "invitation_response": {
-                "name": "ACCEPT",
-                "_module": "entity.event_meeting",
-                "_class": "InvitationResponseTypeName"
-            },
-            "text_response": "Many thanks I will participate for sure",
-            "response_date": "2022-01-24 10:30:00",
-            "_module": "entity.event_meeting",
-            "_class": "EventInvitation"
-        },
         "_module": "entity.event_meeting",
         "_class": "EventMeeting"
     }

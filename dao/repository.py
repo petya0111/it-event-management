@@ -71,8 +71,11 @@ class Repository:
         return entity
 
     def delete_by_id(self, id):
-        old = self.find_by_id(id)
-        del self._entities[id]
+        if id[0] in self._entities.keys():
+            old = self._entities.get(id[0])
+        else:
+            return None
+        del self._entities[id[0]]
         return old
 
     def clear(self):

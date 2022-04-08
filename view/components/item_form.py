@@ -8,8 +8,9 @@ DEFAULT_ENTRY_WIDTH_PX = 250
 
 
 class ItemForm(Toplevel):
-    def __init__(self, parent, item, command, edit=False):
+    def __init__(self, parent,user_id, item, command, edit=False):
         super().__init__(parent)
+        self.user_id = user_id
         self.parent = parent
         self.item = item
         self.command = command

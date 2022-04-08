@@ -15,13 +15,14 @@ BUTTONS_PANEL_HEIGHT_PX = 100
 
 
 class EventMainView(ttk.Frame):
-    def __init__(self, parent, event_controller: EventController,
+    def __init__(self,user_id, parent, event_controller: EventController,
                  show_add_event_command: ShowAddEventCommand,
                  edit_event_command: ShowEditEventCommand, delete_events_command: DeleteEventsCommand):
         super().__init__(parent, padding="3 3 12 12")
+        self.user_id = user_id
         self.show_add_book_command = show_add_event_command
         self.edit_book_command = edit_event_command
-        self.delete_books_command = delete_events_command
+        self.delete_events_command = delete_events_command
         self.event_controller = event_controller
         self.parent = parent
         self.grid(row=0, column=0, sticky='nsew')
@@ -60,8 +61,12 @@ class EventMainView(ttk.Frame):
     def delete_selected(self):
         items = self.item_list.get_selected_tems()
         ids = list(map(lambda item: item[0], items))
-        print(ids)
+        print("delete ids",ids)
+        return self.delete_events_command(ids)
 
     def refresh(self):
-        books = self.event_controller.get_all_events()
-        self.item_list.set_items(books)
+        events = self.event_controller.get_all_events()
+        if len(events) != 0:
+            self.item_list.set_items(events)
+        else:
+            self.item_list.set_items([])
