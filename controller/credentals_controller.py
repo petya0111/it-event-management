@@ -10,9 +10,8 @@ class CredentialsController():
     def register(self, user: User) -> User:
         return self._service.register(user)
 
-    def login(self, email: str, password: str):
-        self._service.login(email,password)
-        print("Successful login")
+    def login(self, email: str, password: str)->User:
+        return self._service.login(email,password)
 
     def logout(self):
         self._service.logout()

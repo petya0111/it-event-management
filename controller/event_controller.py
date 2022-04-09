@@ -1,12 +1,14 @@
 
-from entity.event_meeting import EventMeeting, EventStatusName, EventPost, EventInvitation, InvitationResponseTypeName, \
-    EventTicket
+from entity.event_meeting import EventMeeting, EventStatusName
 from service.event_service import EventService
-from view.command.events.add_event_command import AddEventCommand
-from view.command.events.show_edit_event_command import ShowEditEventCommand
-from view.components.item_edit_event_form import ItemEditEventForm
+from service.user_service import UserService
+from view.command.events.administrate.add_event_command import AddEventCommand
+from view.command.events.administrate.show_edit_event_command import ShowEditEventCommand
+from view.command.events.read.enroll_event_command import EnrollEventCommand
+from view.components.administrate.item_edit_event_form import ItemEditEventForm
 
-from view.components.item_form import ItemForm
+from view.components.administrate.item_form import ItemForm
+from view.components.read.item_enroll_event_form import ItemEnrollEventForm
 
 
 class EventController():
@@ -23,6 +25,10 @@ class EventController():
 
     def update_event_from_host(self, user_id: str, event: EventMeeting):
         self.service.update_event_from_host(user_id, event)
+        self.view.refresh()
+
+    def register_for_event(self,event_id,user_id):
+        self.service.register_for_event(event_id,user_id)
         self.view.refresh()
 
     def delete_event_by_id(self, event_id: list[str]):
@@ -42,8 +48,6 @@ class EventController():
     # def take_ticket(self, event_id: str, event_ticket: EventTicket):
     #     self.service.take_ticket(event_id, event_ticket)
 
-    def register_for_event(self, event_id: str, user_id: str, is_paid: bool):
-        self.service.register_for_event(event_id, user_id, is_paid)
 
     def get_all_events(self):
         return self.service.find_all()
@@ -73,3 +77,6 @@ class EventController():
     def show_edit_event(self, event, user_id):
         form = ItemEditEventForm(self.view, user_id, item=event, command=ShowEditEventCommand(self, user_id, event))
 
+    def show_enroll_event(self, event, user_id):
+        enroll_btn = self.service.is_registered_event(event.id,user_id)
+        form = ItemEnrollEventForm(self.view, user_id,enroll_btn, item=event, command=EnrollEventCommand(self, user_id, event))

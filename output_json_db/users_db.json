@@ -1,6 +1,6 @@
 [
     {
-        "id": "d4bfda87-b7fc-11ec-8606-2c6e85088ae9",
+        "id": "733c37fe-b80b-11ec-b982-2c6e85088ae9",
         "email": "maria@abc.bg",
         "password": "Test123",
         "first_name": "Maria",
@@ -12,25 +12,37 @@
         "_class": "User"
     },
     {
-        "id": "d4c00191-b7fc-11ec-9877-2c6e85088ae9",
+        "id": "733c37ff-b80b-11ec-b1af-2c6e85088ae9",
         "email": "dimitar@abc.bg",
         "password": "Test123",
         "first_name": "Dimitar",
         "last_name": "Hristov",
         "bio": "Backend Dev",
-        "role": "GUEST",
+        "role": "PARTICIPANT",
         "is_active": true,
         "_module": "entity.user",
         "_class": "User"
     },
     {
-        "id": "d4c00192-b7fc-11ec-9ac7-2c6e85088ae9",
+        "id": "733c5ee1-b80b-11ec-8eac-2c6e85088ae9",
         "email": "ivo@abc.bg",
         "password": "Test123",
         "first_name": "Ivan",
         "last_name": "Petrov",
         "bio": "Passionate Python Dev",
         "role": "HOST",
+        "is_active": true,
+        "_module": "entity.user",
+        "_class": "User"
+    },
+    {
+        "id": "733c5ee2-b80b-11ec-86c7-2c6e85088ae9",
+        "email": "anonymus@abc.bg",
+        "password": "Test123",
+        "first_name": "Mitko",
+        "last_name": "Dimitrov",
+        "bio": "Fullstack Dev",
+        "role": "ANONYMUS_USER",
         "is_active": true,
         "_module": "entity.user",
         "_class": "User"

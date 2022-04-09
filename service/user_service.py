@@ -9,6 +9,10 @@ class UserService():
     def create(self, user: User):
         self._user_repository.create(user)
 
+    def get_role(self,user_id):
+        user = self._user_repository.find_by_id(user_id)
+        return user.role.name
+
     def find_all_users(self):
         self._user_repository.find_all()
 

@@ -47,11 +47,14 @@ if __name__ == '__main__':
     host1 = User(first_name='Ivan', last_name='Petrov', email="ivo@abc.bg", password="Test123",
                  bio="Passionate Python Dev", is_active=True,
                  role=RoleName.HOST, group_id=python_devs_group.id)
-    guest1 = User(first_name='Dimitar', last_name='Hristov', email="dimitar@abc.bg", password="Test123",
-                  bio="Backend Dev", is_active=True,
-                  role=RoleName.GUEST, group_id=python_devs_group.id)
+    participantt1 = User(first_name='Dimitar', last_name='Hristov', email="dimitar@abc.bg", password="Test123",
+                         bio="Backend Dev", is_active=True,
+                         role=RoleName.PARTICIPANT, group_id=python_devs_group.id)
+    anonymus1 = User(first_name='Mitko', last_name='Dimitrov', email="anonymus@abc.bg", password="Test123",
+                         bio="Fullstack Dev", is_active=True,
+                         role=RoleName.ANONYMUS_USER, group_id=python_devs_group.id)
 
-    users = [admin11, guest1, host1]
+    users = [admin11, participantt1, host1,anonymus1]
     for u in users:
         user_service.create(u)
     print("---Users---")
@@ -79,12 +82,12 @@ if __name__ == '__main__':
     #                                                                           creation_user_id=host1.id))
     event_service.send_event_invitation(python_latest_trends.id,
                                         EventInvitation(event_id=python_latest_trends.id,
-                                                        user_id=guest1.id,
+                                                        user_id=participantt1.id,
                                                         sent_date=datetime.fromisoformat('2022-01-23T10:30:00')))
     print(python_group.name)
     found_group: Group = group_service.find_by_name("Python Advanced")
     if found_group is not None:
-        found_group.user_ids = [guest1.id]
+        found_group.user_ids = [participantt1.id]
         found_group.event_ids = [python_latest_trends.id]
         group_service.update(found_group)
     group_service.allow_event_in_group(python_latest_trends.id, python_group.id)
@@ -102,7 +105,7 @@ if __name__ == '__main__':
     #                                        response_date=datetime.fromisoformat('2022-01-24T10:30:00'),
     #                                        invitation_response=InvitationResponseTypeName.ACCEPT)
     # guest registers to event
-    event_service.register_for_event(event_id=python_latest_trends.id, user_id=guest1.id, is_paid=False)
+    event_service.register_for_event(event_id=python_latest_trends.id, user_id=participantt1.id)
     event_service.save()
     group_service.save()
     user_service.save()

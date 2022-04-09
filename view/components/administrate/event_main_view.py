@@ -1,9 +1,8 @@
-from tkinter import *
 from tkinter import ttk
 
-from view.command.events.delete_events_command import DeleteEventsCommand
-from view.command.events.select_item_edit_event_command import SelectItemEditEventCommand
-from view.command.events.show_add_event_command import ShowAddEventCommand
+from view.command.events.administrate.delete_events_command import DeleteEventsCommand
+from view.command.events.administrate.select_item_edit_event_command import SelectItemEditEventCommand
+from view.command.events.administrate.show_add_event_command import ShowAddEventCommand
 from view.components.item_list import ItemList
 from view.utils.tkinter_utils import center_resize_window
 
@@ -50,7 +49,7 @@ class EventMainView(ttk.Frame):
         self.add_button = ttk.Button(buttons_frame, text="Edit Event", padding=10,
                                      command=self.edit_selected)
         self.add_button.grid(column=2, row=0, sticky="NE", padx=40, pady=20)
-        self.add_button = ttk.Button(buttons_frame, text="Delete Events", padding=10,
+        self.add_button = ttk.Button(buttons_frame, text="Delete Event", padding=10,
                                      command=self.delete_selected)
         self.add_button.grid(column=3, row=0, sticky="NE", padx=40, pady=20)
 

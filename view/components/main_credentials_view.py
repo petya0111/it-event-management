@@ -4,6 +4,8 @@ from tkinter import *
 
 from controller.credentals_controller import CredentialsController
 from controller.event_controller import EventController
+from entity.user import RoleName
+from view.main_guest_view import MainGuestView
 from view.main_view import MainView
 
 
@@ -29,13 +31,20 @@ class MainCredentialsView(ttk.Frame):
         password_entry = Entry(root, textvariable=password, show='*').grid(row=1, column=1)
 
         def validate_login(username, password):
-            self.credentials_controller.login(username.get(), password.get())
+            user = self.credentials_controller.login(username.get(), password.get())
             root.destroy()
-            event_root = Tk()
-            event_controller.reload_events()
-            main_view = MainView(event_root, event_controller, credentials_controller.get_logged_user())
-            event_controller.view = main_view
-            event_root.mainloop()
+            if user.role == RoleName.ADMIN.name or user.role == RoleName.HOST.name:
+                event_root = Tk()
+                event_controller.reload_events()
+                main_view = MainView(event_root, event_controller, credentials_controller.get_logged_user())
+                event_controller.view = main_view
+                event_root.mainloop()
+            elif user.role == RoleName.PARTICIPANT.name or user.role == RoleName.ANONYMUS_USER.name:
+                event_root = Tk()
+                event_controller.reload_events()
+                main_view = MainGuestView(event_root, event_controller, credentials_controller.get_logged_user())
+                event_controller.view = main_view
+                event_root.mainloop()
 
         validate_login_command = partial(validate_login, username, password)
 
