@@ -1,18 +1,21 @@
-from datetime import datetime
 
-from entity.event_meeting import EventMeeting, EventStatusName, EventPost, EventInvitation, InvitationResponseTypeName, EventTicket
+from entity.event_meeting import EventMeeting, EventStatusName, EventPost, EventInvitation, InvitationResponseTypeName, \
+    EventTicket
 from service.event_service import EventService
-from tkinter import *
 from view.command.events.add_event_command import AddEventCommand
+from view.command.events.show_edit_event_command import ShowEditEventCommand
+from view.components.item_edit_event_form import ItemEditEventForm
 
 from view.components.item_form import ItemForm
-from view.utils.tkinter_utils import center_resize_window
 
 
 class EventController():
-    def __init__(self, service: EventService,view=None):
-        self.view=view
+    def __init__(self, service: EventService, view=None):
+        self.view = view
         self.service = service
+
+    def find_by_id(self, event_id):
+        return self.service.find_by_id(event_id)
 
     def create_event_from_host(self, user_id: str, event: EventMeeting):
         self.service.create_event_from_host(user_id, event)
@@ -20,20 +23,21 @@ class EventController():
 
     def update_event_from_host(self, user_id: str, event: EventMeeting):
         self.service.update_event_from_host(user_id, event)
+        self.view.refresh()
 
-    def delete_event_by_id(self,event_id:list[str]):
+    def delete_event_by_id(self, event_id: list[str]):
         self.service.delete_by_id(event_id)
         self.view.refresh()
 
     # def add_event_post(self, user_id: str, event_id: str, event_post: EventPost):
     #     self.service.add_event_post(user_id, event_id, event_post)
 
-    def respond_event_invitation(self, event_id: str, text_response: str, response_date: datetime,
-                                 invitation_response: InvitationResponseTypeName):
-        self.service.respond_event_invitation(event_id, text_response, response_date, invitation_response)
-
-    def send_event_invitation(self, event_id: str, event_invitation: EventInvitation):
-        self.service.send_event_invitation(event_id, event_invitation)
+    # def respond_event_invitation(self, event_id: str, text_response: str, response_date: datetime,
+    #                              invitation_response: InvitationResponseTypeName):
+    #     self.service.respond_event_invitation(event_id, text_response, response_date, invitation_response)
+    #
+    # def send_event_invitation(self, event_id: str, event_invitation: EventInvitation):
+    #     self.service.send_event_invitation(event_id, event_invitation)
 
     # def take_ticket(self, event_id: str, event_ticket: EventTicket):
     #     self.service.take_ticket(event_id, event_ticket)
@@ -50,8 +54,8 @@ class EventController():
     def reload_events(self):
         return self.service.load()
 
-    def show_add_event(self,user_id:str):
-        form = ItemForm(self.view,user_id,
+    def show_add_event(self, user_id: str):
+        form = ItemForm(self.view, user_id,
                         EventMeeting(name="", description="",
                                      # creation_date=None,
                                      registration_end_date=None,
@@ -64,4 +68,8 @@ class EventController():
                                      creation_user_id=None,  # TODO
                                      event_status=EventStatusName(EventStatusName.OPEN_FOR_REGISTRATIONS),
                                      registered_user_ids=[]),
-                        AddEventCommand(self,user_id))
+                        AddEventCommand(self, user_id))
+
+    def show_edit_event(self, event, user_id):
+        form = ItemEditEventForm(self.view, user_id, item=event, command=ShowEditEventCommand(self, user_id, event))
+

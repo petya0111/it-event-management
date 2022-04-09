@@ -52,4 +52,4 @@ class User:
         return f'{self.id} {self.role.name} {self.first_name} {self.last_name} {self.email} {self.bio} is active: {self.is_active}'
 
     def get_formatted_str(self):
-        return f'| {self.id:24s} | {self.first_name:15.15s} | {self.last_name:15.15s} | {self.email:15.15s} | {self.role:35.35s} |'
+        return f'| {self.id:24s} | {self.first_name:15.15s} | {self.last_name:15.15s} | {self.email:15.15s} | ** {self.password:15.15s} | {self.role:35.35s} |'

@@ -62,6 +62,8 @@ class Repository:
         """
         if entity.id is None:
             entity.id = self._idGenrator.get_next_id()
+        elif entity.id == 'None':
+            entity.id = self._idGenrator.get_next_id()
         self._entities[entity.id] = entity
         return entity
 
@@ -71,12 +73,13 @@ class Repository:
         return entity
 
     def delete_by_id(self, id):
-        if id[0] in self._entities.keys():
-            old = self._entities.get(id[0])
-        else:
-            return None
-        del self._entities[id[0]]
-        return old
+        for i in id:
+            if i in self._entities.keys():
+                old = self._entities.get(i)
+            else:
+                return None
+            del self._entities[i]
+            return old
 
     def clear(self):
         self._entities.clear()

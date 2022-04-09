@@ -1,10 +1,7 @@
 from tkinter import *
 from tkinter import ttk
-from typing import Iterable
 
-from view.utils.tkinter_utils import center_resize_window
-
-DEFAULT_COLUMN_WIDTH_PX = 140
+DEFAULT_COLUMN_WIDTH_PX = 80
 
 
 class ItemList(ttk.Frame):
@@ -32,9 +29,6 @@ class ItemList(ttk.Frame):
         hsb = ttk.Scrollbar(self,orient=HORIZONTAL,command=self.tree.xview)
         hsb.grid(row=1,column=0,sticky=EW,padx=0)
         self.tree.configure(xscrollcommand=hsb.set)
-        # hsb = ttk.Scrollbar(self, orient=HORIZONTAL, command=self.tree.xview)
-        # hsb.grid(row=0, column=1, sticky="NWS", padx=0)
-        # self.tree.configure(yscrollcommand=hsb.set, xscrollcommand=vsb.set)
 
         # resize the parent window to show treeview widget
         self.tree.update_idletasks()

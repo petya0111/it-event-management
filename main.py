@@ -40,7 +40,7 @@ if __name__ == '__main__':
     group_service.create(python_group)
     group_service.create(python_devs_group)
 
-    admin11 = User(first_name='Maria', last_name='Georgieva', email="ivo@abc.bg", password="Test123",
+    admin11 = User(first_name='Maria', last_name='Georgieva', email="maria@abc.bg", password="Test123",
                    bio="Passionate Python Dev",
                    is_active=True,
                    role=RoleName.ADMIN, group_id=python_devs_group.id)
@@ -124,8 +124,6 @@ if __name__ == '__main__':
     credentials_service = CredentialsService(user_repository)
 
     credentials_controller = CredentialsController(credentials_service)
-    # ivo@abc.bg
-    # Test123
     credentials_controller.reload_users()
     credential_view = MainCredentialsView(root,credentials_controller,event_controller)
     credentials_controller.view = credential_view

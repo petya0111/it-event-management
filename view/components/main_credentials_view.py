@@ -28,7 +28,7 @@ class MainCredentialsView(ttk.Frame):
         password = StringVar()
         password_entry = Entry(root, textvariable=password, show='*').grid(row=1, column=1)
 
-        def validateLogin(username, password):
+        def validate_login(username, password):
             self.credentials_controller.login(username.get(), password.get())
             root.destroy()
             event_root = Tk()
@@ -37,7 +37,7 @@ class MainCredentialsView(ttk.Frame):
             event_controller.view = main_view
             event_root.mainloop()
 
-        validate_login_command = partial(validateLogin, username, password)
+        validate_login_command = partial(validate_login, username, password)
 
         # login button
         login_button = Button(root, text="Login", command=validate_login_command).grid(row=4, column=0)

@@ -28,10 +28,12 @@ class EventService():
         event.creation_user_id = user_id
         event.status_name = EventStatusName.OPEN_FOR_REGISTRATIONS
         self._event_repository.create(event)
+        self._event_repository.save()
 
     def update_event_from_host(self, user_id: str, event: EventMeeting):
         self.check_permitted_to_modify(user_id)
         self._event_repository.update(event)
+        self._event_repository.save()
 
     # def add_event_post(self, user_id: str, event_id: str, event_post: EventPost):
     #     self.check_permitted_to_modify(user_id)
@@ -72,8 +74,12 @@ class EventService():
         event.registered_user_ids.append(user_id)
         self._event_repository.update(event)
 
+    def find_by_id(self,id):
+        return self._event_repository.find_by_id(id)
+
     def delete_by_id(self,id):
-        return self._event_repository.delete_by_id(id)
+        self._event_repository.delete_by_id(id)
+        self._event_repository.save()
 
     def find_all(self):
         return self._event_repository.find_all()

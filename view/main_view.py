@@ -4,7 +4,7 @@ from tkinter import ttk
 from controller.event_controller import EventController
 from view.command.events.add_event_command import AddEventCommand
 from view.command.events.delete_events_command import DeleteEventsCommand
-from view.command.events.edit_event_command import ShowEditEventCommand
+from view.command.events.select_item_edit_event_command import SelectItemEditEventCommand
 from view.command.events.list_events_command import ListEventsCommand
 from view.command.events.show_add_event_command import ShowAddEventCommand
 from view.command.exit_command import ExitCommand
@@ -44,24 +44,23 @@ class MainView(ttk.Frame):
         # Create commands
         self.show_add_event_command = ShowAddEventCommand(event_controller, user_id)
         self.add_event_command = AddEventCommand(event_controller, user_id)
-        self.show_edit_book_command = ShowEditEventCommand(event_controller)
-        self.delete_books_command = DeleteEventsCommand(event_controller)
-        self.list_books_command = ListEventsCommand(event_controller)
+        self.edit_event_command = SelectItemEditEventCommand(event_controller, user_id)
+        self.delete_events_command = DeleteEventsCommand(event_controller)
+        self.list_events_command = ListEventsCommand(event_controller)
 
         # Books menu
         menu_books = Menu(self.menubar)
         self.menubar.add_cascade(menu=menu_books, label="Events", underline=0)
-        menu_books.add_command(label="List Events", command=self.list_books_command)
+        menu_books.add_command(label="List Events", command=self.list_events_command)
         menu_books.add_separator()
         menu_books.add_command(label="Add Event", command=self.show_add_event_command)
-        menu_books.add_command(label="Edit Event", command=self.show_edit_book_command)
-        menu_books.add_command(label="Delete Events", command=self.delete_books_command)
+        menu_books.add_command(label="Delete Events", command=self.delete_events_command)
 
         # Show items
         self.item_list = EventMainView(user_id, self.root, self.event_controller,
                                        self.show_add_event_command,
-                                       self.show_edit_book_command,
-                                       self.delete_books_command)
+                                       self.edit_event_command,
+                                       self.delete_events_command)
 
         print_hierarchy(root)
 
