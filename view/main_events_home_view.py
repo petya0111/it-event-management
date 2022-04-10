@@ -16,7 +16,7 @@ from view.command.load_data_command import LoadDataCommand
 from view.command.save_data_command import SaveDataCommand
 from view.components.administrate.event_main_view import EventMainView
 
-from view.utils.tkinter_utils import print_hierarchy, center_resize_window
+from view.utils.tkinter_utils import print_hierarchy
 
 
 class MainEventsHomeView(ttk.Frame):
@@ -46,7 +46,7 @@ class MainEventsHomeView(ttk.Frame):
         menu_file.add_separator()
         exit_command = ExitCommand(root)
         menu_file.add_command(label="Exit", command=exit_command, underline=1, accelerator='Ctrl-Shift-X')
-        # menu_file.add_command(label="Logout", command=partial(self.logout))
+        menu_file.add_command(label="Logout", command=partial(self.logout))
         root.bind_all("<Control-Shift-KeyPress-X>", exit_command)
 
         # Create commands
@@ -78,16 +78,14 @@ class MainEventsHomeView(ttk.Frame):
 
         print_hierarchy(root)
 
-    # def logout(self):
-    #     self.root.destroy()
-    #     self.root = Tk()
-    #     center_resize_window(self.root, 800, 400)
-    #     self.root.columnconfigure(0, weight=1)
-    #     self.root.rowconfigure(0, weight=1)
-    #
-    #     login_view = MainLoginHomeView(self.root, self.credentials_controller, self.event_controller)
-    #     self.credentials_controller.view = login_view
-    #     self.root.mainloop()
+    def logout(self):
+        self.root.destroy()
+        self.root = Tk()
+
+        from view.main_login_view import MainLoginHomeView
+        login_view = MainLoginHomeView(self.root, self.credentials_controller, self.event_controller)
+        self.credentials_controller.view = login_view
+        self.root.mainloop()
 
     def refresh(self):
         self.item_list.refresh()

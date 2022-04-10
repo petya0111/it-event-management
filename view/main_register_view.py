@@ -68,12 +68,12 @@ class MainRegisterView(ttk.Frame):
         def role_chosen(value):
             self.selected_role = value
 
-        self.rb1 = Radiobutton(winsignup, text='ADMIN', variable=roleType, value=0,
-                               command=lambda: role_chosen("ADMIN"))
-        self.rb2 = Radiobutton(winsignup, text='HOST', variable=roleType, value=1, command=lambda: role_chosen("HOST"))
-        self.rb3 = Radiobutton(winsignup, text='PARTICIPANT', variable=roleType, value=2,
-                               command=lambda: role_chosen("PARTICIPANT"))
-        self.rb4 = Radiobutton(winsignup, text='ANONYMOUS_USER', variable=roleType, value=3,
+        self.rb1 = Radiobutton(winsignup, text=RoleName.ADMIN.name, variable=roleType, value=0,
+                               command=lambda: role_chosen(RoleName.ADMIN.name))
+        self.rb2 = Radiobutton(winsignup, text=RoleName.HOST.name, variable=roleType, value=1, command=lambda: role_chosen("HOST"))
+        self.rb3 = Radiobutton(winsignup, text=RoleName.PARTICIPANT.name, variable=roleType, value=2,
+                               command=lambda: role_chosen(RoleName.PARTICIPANT.name))
+        self.rb4 = Radiobutton(winsignup, text=RoleName.ANONYMOUS_USER.name, variable=roleType, value=3,
                                command=lambda: role_chosen(RoleName.ANONYMOUS_USER.name))
         self.rb1.place(x=200, y=220)
         self.rb2.place(x=200, y=238)
@@ -84,7 +84,7 @@ class MainRegisterView(ttk.Frame):
         user_name = Entry(winsignup, width=40, textvariable=email_var)
         user_name.place(x=210, y=303)
 
-        password = Entry(winsignup, width=40, textvariable=password)
+        password = Entry(winsignup, width=40, show="*", textvariable=password)
         password.place(x=210, y=333)
 
         very_pass = Entry(winsignup, width=40, show="*", textvariable=very_pass)
