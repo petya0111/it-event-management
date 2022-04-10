@@ -62,7 +62,7 @@ class ItemEnrollEventForm(Toplevel):
         buttons_frame.grid(column=0, row=len(self.columns), columnspan=2, sticky=NSEW)
         self.add_button = ttk.Button(buttons_frame, text="Enroll", padding=10, command=self.submit)
         if enroll_btn == True:
-            self.add_button = ttk.Button(buttons_frame, text="Enroll", padding=10,state=DISABLED)
+            self.add_button = ttk.Button(buttons_frame, text="You are going to this event", padding=10,state=DISABLED)
         self.add_button.grid(column=1, row=0, sticky=NE, padx=40, pady=20)
 
         rows, cols = buttons_frame.grid_size()

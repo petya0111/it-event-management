@@ -6,14 +6,14 @@ from dao.event_repository import EventRepository
 from dao.group_repository import GroupRepository
 from dao.id_generator_uuid import IdGeneratorUuid
 from dao.user_repository import UserRepository
-from entity.event_meeting import EventMeeting, EventStatusName, EventPost, EventInvitation, InvitationResponseTypeName
+from entity.event_meeting import EventMeeting, EventStatusName, EventInvitation
 from entity.group import Group
 from entity.user import RoleName, User
 from service.event_service import EventService
 from service.group_service import GroupService
 from service.credentials_service import CredentialsService
 from service.user_service import UserService
-from view.components.main_credentials_view import MainCredentialsView
+from view.main_login_view import MainLoginView
 from tkinter import *
 
 from view.utils.tkinter_utils import center_resize_window
@@ -49,10 +49,10 @@ if __name__ == '__main__':
                  role=RoleName.HOST, group_id=python_devs_group.id)
     participantt1 = User(first_name='Dimitar', last_name='Hristov', email="dimitar@abc.bg", password="Test123",
                          bio="Backend Dev", is_active=True,
-                         role=RoleName.PARTICIPANT, group_id=python_devs_group.id)
+                         role=RoleName.ANONYMOUS_USER, group_id=python_devs_group.id)
     anonymus1 = User(first_name='Mitko', last_name='Dimitrov', email="anonymus@abc.bg", password="Test123",
-                         bio="Fullstack Dev", is_active=True,
-                         role=RoleName.ANONYMUS_USER, group_id=python_devs_group.id)
+                     bio="Fullstack Dev", is_active=True,
+                     role=RoleName.ANONYMOUS_USER, group_id=python_devs_group.id)
 
     users = [admin11, participantt1, host1,anonymus1]
     for u in users:
@@ -124,10 +124,11 @@ if __name__ == '__main__':
     root.rowconfigure(0, weight=1)
 
     event_controller = EventController(event_service)
-    credentials_service = CredentialsService(user_repository)
 
+    credentials_service = CredentialsService(user_repository)
     credentials_controller = CredentialsController(credentials_service)
     credentials_controller.reload_users()
-    credential_view = MainCredentialsView(root,credentials_controller,event_controller)
-    credentials_controller.view = credential_view
+
+    login_view = MainLoginView(root, credentials_controller, event_controller)
+    credentials_controller.view = login_view
     root.mainloop()

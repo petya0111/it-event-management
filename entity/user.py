@@ -4,8 +4,7 @@ from enum import Enum
 class RoleName(Enum):
     ADMIN = 1,
     HOST = 2,
-    PARTICIPANT = 3,
-    ANONYMUS_USER = 4
+    ANONYMOUS_USER = 3
 
     @classmethod
     def from_json(cls, prop_dict):
@@ -23,7 +22,7 @@ class User:
 
     def __init__(self, first_name: str = None, last_name: str = None, email: str = None, password: str = None,
                  bio: str = None, is_active: bool = False,
-                 group_id: str = None, role: RoleName = RoleName.ANONYMUS_USER, id=None):
+                 group_id: str = None, role: RoleName = RoleName.ANONYMOUS_USER, id=None):
         self.id = id
         self.role = role
         self.group_id = group_id

@@ -8,7 +8,8 @@ class CredentialsController():
         self._service = service
 
     def register(self, user: User) -> User:
-        return self._service.register(user)
+        user =self._service.register(user)
+        return user
 
     def login(self, email: str, password: str)->User:
         return self._service.login(email,password)

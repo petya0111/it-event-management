@@ -1,6 +1,6 @@
 [
     {
-        "id": "733c37fe-b80b-11ec-b982-2c6e85088ae9",
+        "id": "ad8eb50f-b8d3-11ec-bdd7-2c6e85088ae9",
         "email": "maria@abc.bg",
         "password": "Test123",
         "first_name": "Maria",
@@ -12,19 +12,19 @@
         "_class": "User"
     },
     {
-        "id": "733c37ff-b80b-11ec-b1af-2c6e85088ae9",
+        "id": "ad8eb510-b8d3-11ec-8c2f-2c6e85088ae9",
         "email": "dimitar@abc.bg",
         "password": "Test123",
         "first_name": "Dimitar",
         "last_name": "Hristov",
         "bio": "Backend Dev",
-        "role": "PARTICIPANT",
+        "role": "ANONYMOUS_USER",
         "is_active": true,
         "_module": "entity.user",
         "_class": "User"
     },
     {
-        "id": "733c5ee1-b80b-11ec-8eac-2c6e85088ae9",
+        "id": "ad8eb511-b8d3-11ec-990c-2c6e85088ae9",
         "email": "ivo@abc.bg",
         "password": "Test123",
         "first_name": "Ivan",
@@ -36,14 +36,26 @@
         "_class": "User"
     },
     {
-        "id": "733c5ee2-b80b-11ec-86c7-2c6e85088ae9",
+        "id": "ad8eb512-b8d3-11ec-bb72-2c6e85088ae9",
         "email": "anonymus@abc.bg",
         "password": "Test123",
         "first_name": "Mitko",
         "last_name": "Dimitrov",
         "bio": "Fullstack Dev",
-        "role": "ANONYMUS_USER",
+        "role": "ANONYMOUS_USER",
         "is_active": true,
+        "_module": "entity.user",
+        "_class": "User"
+    },
+    {
+        "id": "baf56a8d-b8d3-11ec-bd1c-2c6e85088ae9",
+        "email": "aaaaa",
+        "password": "aaaaa",
+        "first_name": "aaaaa",
+        "last_name": "aaaaa",
+        "bio": "aaaaa",
+        "role": "ANONYMOUS_USER",
+        "is_active": false,
         "_module": "entity.user",
         "_class": "User"
     }
