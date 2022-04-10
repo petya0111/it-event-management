@@ -58,7 +58,6 @@ class EventMainView(ttk.Frame):
         self.add_button = ttk.Button(buttons_frame, text="Delete Event", padding=10,
                                      command=self.delete_selected)
         self.add_button.grid(column=3, row=0, sticky="NE", padx=40, pady=20)
-
         if is_admin:
             self.add_button = ttk.Button(buttons_frame, text="Register User", padding=10,
                                          command=register_user_command)
@@ -69,7 +68,6 @@ class EventMainView(ttk.Frame):
             buttons_frame.columnconfigure(col, minsize=300, pad=30)
 
     def edit_selected(self):
-
         items = self.item_list.get_selected_tems()
         ids = list(map(lambda item: item[0], items))
         if len(ids) > 0:

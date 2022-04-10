@@ -4,13 +4,13 @@ from tkinter import ttk, messagebox
 
 from controller.credentals_controller import CredentialsController
 from controller.event_controller import EventController
-from entity.user import RoleName
+from entity.user import RoleName, User
 from exception.credentials_exception import CredentialsException
 from view.main_guest_view import MainGuestView
-from view.main_view import MainView
+from view.main_events_home_view import MainEventsHomeView
 
 
-class MainLoginView(ttk.Frame):
+class MainLoginHomeView(ttk.Frame):
 
     def __init__(self, win, credentials_controller: CredentialsController, event_controller: EventController):
         super().__init__(win)
@@ -52,7 +52,8 @@ class MainLoginView(ttk.Frame):
             if user.role == RoleName.ADMIN.name or user.role == RoleName.HOST.name:
                 event_root = Tk()
                 event_controller.reload_events()
-                main_view = MainView(event_root, event_controller,credentials_controller, credentials_controller.get_logged_user())
+                main_view = MainEventsHomeView(event_root, event_controller, credentials_controller,
+                                               credentials_controller.get_logged_user())
                 event_controller.view = main_view
                 event_root.mainloop()
             elif user.role == RoleName.ANONYMOUS_USER.name or user.role == RoleName.PARTICIPANT.name:
@@ -77,7 +78,17 @@ class MainLoginView(ttk.Frame):
                 except Exception as e:
                     messagebox.showerror("Error", f"Login failed : {str(e)}", parent=win)
 
-
+        def login_as_anonymus():
+            user = self.credentials_controller.register(
+                User(first_name="Anonymus", last_name="Anonymus", email="111", password="111",
+                     role=RoleName.ANONYMOUS_USER))
+            self.credentials_controller.login(user.email, user.password)
+            win.destroy()
+            event_root = Tk()
+            event_controller.reload_events()
+            main_view = MainGuestView(event_root, event_controller, credentials_controller)
+            event_controller.view = main_view
+            event_root.mainloop()
 
         btn_login = Button(win, text="Login", font='Verdana 10 bold', command=partial(login))
         btn_login.place(x=200, y=293)
@@ -85,3 +96,5 @@ class MainLoginView(ttk.Frame):
         btn_login = Button(win, text="Clear", font='Verdana 10 bold', command=partial(clear))
         btn_login.place(x=260, y=293)
 
+        btn_login = Button(win, text="Login as anonymus", font='Verdana 10 bold', command=partial(login_as_anonymus))
+        btn_login.place(x=200, y=333)

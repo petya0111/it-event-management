@@ -13,7 +13,7 @@ from service.event_service import EventService
 from service.group_service import GroupService
 from service.credentials_service import CredentialsService
 from service.user_service import UserService
-from view.main_login_view import MainLoginView
+from view.main_login_view import MainLoginHomeView
 from tkinter import *
 
 from view.utils.tkinter_utils import center_resize_window
@@ -146,6 +146,6 @@ if __name__ == '__main__':
     credentials_controller = CredentialsController(credentials_service)
     credentials_controller.reload_users()
 
-    login_view = MainLoginView(root, credentials_controller, event_controller)
+    login_view = MainLoginHomeView(root, credentials_controller, event_controller)
     credentials_controller.view = login_view
     root.mainloop()

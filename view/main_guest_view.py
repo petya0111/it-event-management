@@ -1,3 +1,4 @@
+from functools import partial
 from tkinter import *
 from tkinter import ttk
 
@@ -10,7 +11,7 @@ from view.command.exit_command import ExitCommand
 from view.command.load_data_command import LoadDataCommand
 from view.command.save_data_command import SaveDataCommand
 from view.components.read.event_main_guest_view import EventMainGuestView
-from view.utils.tkinter_utils import print_hierarchy
+from view.utils.tkinter_utils import print_hierarchy, center_resize_window
 
 
 class MainGuestView(ttk.Frame):
@@ -38,6 +39,7 @@ class MainGuestView(ttk.Frame):
         menu_file.add_command(label="Save Data", command=SaveDataCommand(event_controller))
         menu_file.add_separator()
         exit_command = ExitCommand(root)
+        # menu_file.add_command(label="Logout", command=partial(self.logout))
         menu_file.add_command(label="Exit", command=exit_command, underline=1, accelerator='Ctrl-Shift-X')
         root.bind_all("<Control-Shift-KeyPress-X>", exit_command)
 
@@ -57,6 +59,17 @@ class MainGuestView(ttk.Frame):
                                             self.view_event_command)
 
         print_hierarchy(root)
+
+    # def logout(self):
+    #     self.root.destroy()
+    #     self.root = Tk()
+    #     center_resize_window(self.root, 800, 400)
+    #     self.root.columnconfigure(0, weight=1)
+    #     self.root.rowconfigure(0, weight=1)
+    #
+    #     login_view = MainLoginHomeView(self.root, self.credentials_controller, self.event_controller)
+    #     self.credentials_controller.view = login_view
+    #     self.root.mainloop()
 
     def refresh(self):
         self.item_list.refresh()

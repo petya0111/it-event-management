@@ -15,7 +15,7 @@ class CredentialsService:
     def register(self, user: User) -> User:
         found_email = self.user_repository.find_by_email(user.email)
         if found_email is not None:
-            raise EmailAlreadyRegisteredExcetion(found_email.email)
+            return found_email
         created = self.user_repository.create(user)
         self.user_repository.save()
         return created
