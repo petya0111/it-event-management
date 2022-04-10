@@ -1,6 +1,6 @@
 [
     {
-        "id": "ad8eb50f-b8d3-11ec-bdd7-2c6e85088ae9",
+        "id": "7e4abfc9-b8ec-11ec-8f97-2c6e85088ae9",
         "email": "maria@abc.bg",
         "password": "Test123",
         "first_name": "Maria",
@@ -12,19 +12,19 @@
         "_class": "User"
     },
     {
-        "id": "ad8eb510-b8d3-11ec-8c2f-2c6e85088ae9",
+        "id": "7e4abfca-b8ec-11ec-b2cc-2c6e85088ae9",
         "email": "dimitar@abc.bg",
         "password": "Test123",
         "first_name": "Dimitar",
         "last_name": "Hristov",
         "bio": "Backend Dev",
-        "role": "ANONYMOUS_USER",
+        "role": "PARTICIPANT",
         "is_active": true,
         "_module": "entity.user",
         "_class": "User"
     },
     {
-        "id": "ad8eb511-b8d3-11ec-990c-2c6e85088ae9",
+        "id": "7e4abfcb-b8ec-11ec-979e-2c6e85088ae9",
         "email": "ivo@abc.bg",
         "password": "Test123",
         "first_name": "Ivan",
@@ -36,7 +36,19 @@
         "_class": "User"
     },
     {
-        "id": "ad8eb512-b8d3-11ec-bb72-2c6e85088ae9",
+        "id": "7e4abfcc-b8ec-11ec-bc22-2c6e85088ae9",
+        "email": "ivo2@abc.bg",
+        "password": "Test123",
+        "first_name": "Ivan2",
+        "last_name": "Petrov",
+        "bio": "Passionate Java Dev",
+        "role": "HOST",
+        "is_active": true,
+        "_module": "entity.user",
+        "_class": "User"
+    },
+    {
+        "id": "7e4ae6be-b8ec-11ec-bee8-2c6e85088ae9",
         "email": "anonymus@abc.bg",
         "password": "Test123",
         "first_name": "Mitko",
@@ -44,18 +56,6 @@
         "bio": "Fullstack Dev",
         "role": "ANONYMOUS_USER",
         "is_active": true,
-        "_module": "entity.user",
-        "_class": "User"
-    },
-    {
-        "id": "baf56a8d-b8d3-11ec-bd1c-2c6e85088ae9",
-        "email": "aaaaa",
-        "password": "aaaaa",
-        "first_name": "aaaaa",
-        "last_name": "aaaaa",
-        "bio": "aaaaa",
-        "role": "ANONYMOUS_USER",
-        "is_active": false,
         "_module": "entity.user",
         "_class": "User"
     }

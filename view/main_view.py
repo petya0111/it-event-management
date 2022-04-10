@@ -1,12 +1,15 @@
 from tkinter import *
 from tkinter import ttk
 
+from controller.credentals_controller import CredentialsController
 from controller.event_controller import EventController
 from view.command.events.administrate.add_event_command import AddEventCommand
 from view.command.events.administrate.delete_events_command import DeleteEventsCommand
+from view.command.events.administrate.register_user_command import RegisterUserCommand
 from view.command.events.administrate.select_item_edit_event_command import SelectItemEditEventCommand
 from view.command.events.list_events_command import ListEventsCommand
 from view.command.events.administrate.show_add_event_command import ShowAddEventCommand
+from view.command.events.read.select_item_view_event_command import SelectItemViewEventCommand
 from view.command.exit_command import ExitCommand
 from view.command.load_data_command import LoadDataCommand
 from view.command.save_data_command import SaveDataCommand
@@ -15,8 +18,10 @@ from view.utils.tkinter_utils import print_hierarchy
 
 
 class MainView(ttk.Frame):
-    def __init__(self, root, event_controller: EventController, user_id: str):
+    def __init__(self, root, event_controller: EventController, credentials_controller: CredentialsController,
+                 user_id: str):
         super().__init__(root, padding="3 3 12 12")
+        self.credentials_controller = credentials_controller
         self.user_id = user_id
         self.root = root
         self.event_controller = event_controller
@@ -47,20 +52,26 @@ class MainView(ttk.Frame):
         self.edit_event_command = SelectItemEditEventCommand(event_controller, user_id)
         self.delete_events_command = DeleteEventsCommand(event_controller)
         self.list_events_command = ListEventsCommand(event_controller)
+        self.view_event_command = SelectItemViewEventCommand(event_controller, True, user_id)
 
-        # Books menu
-        menu_books = Menu(self.menubar)
-        self.menubar.add_cascade(menu=menu_books, label="Events", underline=0)
-        menu_books.add_command(label="List Events", command=self.list_events_command)
-        menu_books.add_separator()
-        menu_books.add_command(label="Add Event", command=self.show_add_event_command)
-        menu_books.add_command(label="Delete Event", command=self.delete_events_command)
+        menu_events = Menu(self.menubar)
+        self.menubar.add_cascade(menu=menu_events, label="Events", underline=0)
+        menu_events.add_command(label="List Events", command=self.list_events_command)
+        menu_events.add_separator()
+        menu_events.add_command(label="Add Event", command=self.show_add_event_command)
+        menu_events.add_command(label="Edit Event", command=self.edit_event_command)
+        menu_events.add_command(label="Delete Event", command=self.delete_events_command)
+
+        is_admin: bool = self.credentials_controller.get_role(user_id) == "ADMIN"
+        self.register_user_command = RegisterUserCommand(credentials_controller, user_id)
+        if is_admin:
+            menu_events.add_command(label="Register User", command=self.register_user_command)
 
         # Show items
-        self.item_list = EventMainView(user_id, self.root, self.event_controller,
+        self.item_list = EventMainView(user_id, is_admin, self.root, self.event_controller,
                                        self.show_add_event_command,
                                        self.edit_event_command,
-                                       self.delete_events_command)
+                                       self.delete_events_command, self.register_user_command, self.view_event_command)
 
         print_hierarchy(root)
 

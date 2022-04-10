@@ -14,7 +14,7 @@ class ItemEditEventForm(Toplevel):
         self.command = command
         self.edit = edit
 
-        self.frame = ttk.Frame(self, padding="30 30 30 30")
+        self.frame = ttk.Frame(self, padding="20 20 20 20")
         self.title("Edit Event")
         self.frame.grid(row=0, column=0, sticky=NSEW)
         center_resize_window(self)

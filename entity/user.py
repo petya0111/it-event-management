@@ -4,7 +4,8 @@ from enum import Enum
 class RoleName(Enum):
     ADMIN = 1,
     HOST = 2,
-    ANONYMOUS_USER = 3
+    PARTICIPANT = 3
+    ANONYMOUS_USER = 4
 
     @classmethod
     def from_json(cls, prop_dict):

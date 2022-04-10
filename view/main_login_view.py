@@ -7,7 +7,6 @@ from controller.event_controller import EventController
 from entity.user import RoleName
 from exception.credentials_exception import CredentialsException
 from view.main_guest_view import MainGuestView
-from view.main_register_view import MainRegisterView
 from view.main_view import MainView
 
 
@@ -53,13 +52,13 @@ class MainLoginView(ttk.Frame):
             if user.role == RoleName.ADMIN.name or user.role == RoleName.HOST.name:
                 event_root = Tk()
                 event_controller.reload_events()
-                main_view = MainView(event_root, event_controller, credentials_controller.get_logged_user())
+                main_view = MainView(event_root, event_controller,credentials_controller, credentials_controller.get_logged_user())
                 event_controller.view = main_view
                 event_root.mainloop()
-            elif user.role == RoleName.ANONYMOUS_USER.name:
+            elif user.role == RoleName.ANONYMOUS_USER.name or user.role == RoleName.PARTICIPANT.name:
                 event_root = Tk()
                 event_controller.reload_events()
-                main_view = MainGuestView(event_root, event_controller, credentials_controller.get_logged_user())
+                main_view = MainGuestView(event_root, event_controller, credentials_controller)
                 event_controller.view = main_view
                 event_root.mainloop()
 
@@ -78,11 +77,7 @@ class MainLoginView(ttk.Frame):
                 except Exception as e:
                     messagebox.showerror("Error", f"Login failed : {str(e)}", parent=win)
 
-        def signup():
-            root = Tk()
-            login_view = MainRegisterView(root, credentials_controller, event_controller)
-            credentials_controller.view = login_view
-            root.mainloop()
+
 
         btn_login = Button(win, text="Login", font='Verdana 10 bold', command=partial(login))
         btn_login.place(x=200, y=293)
@@ -90,5 +85,3 @@ class MainLoginView(ttk.Frame):
         btn_login = Button(win, text="Clear", font='Verdana 10 bold', command=partial(clear))
         btn_login.place(x=260, y=293)
 
-        sign_up_btn = Button(win, text="Switch To Sign up", command=partial(signup))
-        sign_up_btn.place(x=350, y=20)

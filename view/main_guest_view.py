@@ -1,7 +1,9 @@
 from tkinter import *
 from tkinter import ttk
 
+from controller.credentals_controller import CredentialsController
 from controller.event_controller import EventController
+from entity.user import RoleName
 from view.command.events.list_events_command import ListEventsCommand
 from view.command.events.read.select_item_view_event_command import SelectItemViewEventCommand
 from view.command.exit_command import ExitCommand
@@ -12,9 +14,10 @@ from view.utils.tkinter_utils import print_hierarchy
 
 
 class MainGuestView(ttk.Frame):
-    def __init__(self, root, event_controller: EventController, user_id: str):
+    def __init__(self, root, event_controller: EventController, credentials_controller: CredentialsController):
         super().__init__(root, padding="3 3 12 12")
-        self.user_id = user_id
+        self.credentials_controller = credentials_controller
+        self.user_id = credentials_controller.get_logged_user()
         self.root = root
         self.event_controller = event_controller
 
@@ -38,8 +41,9 @@ class MainGuestView(ttk.Frame):
         menu_file.add_command(label="Exit", command=exit_command, underline=1, accelerator='Ctrl-Shift-X')
         root.bind_all("<Control-Shift-KeyPress-X>", exit_command)
 
-        # Create commands
-        self.edit_event_command = SelectItemViewEventCommand(event_controller, user_id)
+        self.view_event_command = SelectItemViewEventCommand(event_controller,
+                                                             credentials_controller.get_role(credentials_controller.get_logged_user()) != RoleName.ANONYMOUS_USER.name,
+                                                             self.user_id)
         self.list_events_command = ListEventsCommand(event_controller)
 
         # Books menu
@@ -49,8 +53,8 @@ class MainGuestView(ttk.Frame):
         menu_books.add_separator()
 
         # Show items
-        self.item_list = EventMainGuestView(user_id, self.root, self.event_controller,
-                                            self.edit_event_command)
+        self.item_list = EventMainGuestView(self.user_id, self.root, self.event_controller,
+                                            self.view_event_command)
 
         print_hierarchy(root)
 

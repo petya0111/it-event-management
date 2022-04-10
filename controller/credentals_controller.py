@@ -1,3 +1,4 @@
+
 from entity.user import  User
 from service.credentials_service import CredentialsService
 
@@ -23,3 +24,6 @@ class CredentialsController():
 
     def reload_users(self):
         return self._service.reload_users()
+
+    def get_role(self, user_id):
+        return self._service.get_role(user_id)

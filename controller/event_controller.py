@@ -23,6 +23,9 @@ class EventController():
         self.service.create_event_from_host(user_id, event)
         self.view.refresh()
 
+    def is_event_from_same_host_id(self,event_id,host_id):
+        return self.service.is_event_from_same_host_id(event_id,host_id)
+
     def update_event_from_host(self, user_id: str, event: EventMeeting):
         self.service.update_event_from_host(user_id, event)
         self.view.refresh()
@@ -77,6 +80,6 @@ class EventController():
     def show_edit_event(self, event, user_id):
         form = ItemEditEventForm(self.view, user_id, item=event, command=ShowEditEventCommand(self, user_id, event))
 
-    def show_enroll_event(self, event, user_id):
+    def show_enroll_event(self, event,can_enroll, user_id):
         enroll_btn = self.service.is_registered_event(event.id,user_id)
-        form = ItemEnrollEventForm(self.view, user_id,enroll_btn, item=event, command=EnrollEventCommand(self, user_id, event))
+        form = ItemEnrollEventForm(self.view, user_id,enroll_btn,can_enroll, item=event, command=EnrollEventCommand(self, user_id, event))

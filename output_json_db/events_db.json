@@ -1,7 +1,7 @@
 [
     {
-        "id": "ad8eb513-b8d3-11ec-8d9f-2c6e85088ae9",
-        "name": "Latest trends of pytthon",
+        "id": "7e4ae6bf-b8ec-11ec-80d5-2c6e85088ae9",
+        "name": "Latest trends of python",
         "description": "Get to know latest trends in clean code",
         "registration_end_date": "2022-04-22 11:00:00",
         "start_datetime": "2022-04-22 10:30:00",
@@ -10,12 +10,28 @@
         "is_public": true,
         "capacity": 300,
         "price": 0,
-        "creation_user_id": "ad8eb511-b8d3-11ec-990c-2c6e85088ae9",
+        "creation_user_id": "7e4abfcb-b8ec-11ec-979e-2c6e85088ae9",
         "event_status": "OPEN_FOR_REGISTRATIONS",
         "registered_user_ids": [
-            "ad8eb510-b8d3-11ec-8c2f-2c6e85088ae9",
-            "baf56a8d-b8d3-11ec-bd1c-2c6e85088ae9"
+            "7e4abfca-b8ec-11ec-b2cc-2c6e85088ae9"
         ],
+        "_module": "entity.event_meeting",
+        "_class": "EventMeeting"
+    },
+    {
+        "id": "7e4b5bf9-b8ec-11ec-b70b-2c6e85088ae9",
+        "name": "Latest trends of Java",
+        "description": "Get to know latest trends in clean code",
+        "registration_end_date": "2022-04-22 11:00:00",
+        "start_datetime": "2022-04-22 10:30:00",
+        "end_datetime": "2022-04-22 18:30:00",
+        "place": "Online",
+        "is_public": true,
+        "capacity": 300,
+        "price": 0,
+        "creation_user_id": "7e4abfcc-b8ec-11ec-bc22-2c6e85088ae9",
+        "event_status": "OPEN_FOR_REGISTRATIONS",
+        "registered_user_ids": [],
         "_module": "entity.event_meeting",
         "_class": "EventMeeting"
     }

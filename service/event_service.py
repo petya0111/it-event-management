@@ -1,4 +1,3 @@
-from datetime import datetime
 
 from dao.event_repository import EventRepository
 from dao.user_repository import UserRepository
@@ -7,7 +6,6 @@ from entity.event_meeting import EventMeeting, EventStatusName, EventPost, Event
 from entity.user import User, RoleName
 from exception.already_registered_for_event_exception import AlreadyRegisteredForEventExcetion
 from exception.not_host_modification_event_exception import NotHostCreationEventException
-from exception.not_permitted_to_register_exception import NotPermittedToRegisterException
 
 
 class EventService():
@@ -30,6 +28,12 @@ class EventService():
         event.status_name = EventStatusName.OPEN_FOR_REGISTRATIONS
         self._event_repository.create(event)
         self._event_repository.save()
+
+    def is_event_from_same_host_id(self,event_id,host_id):
+        event:EventMeeting = self._event_repository.find_by_id(event_id)
+        if host_id == event.creation_user_id:
+            return True
+        return False
 
     def is_registered_event(self, event_id, user_id):
         event: EventMeeting = self._event_repository.find_by_id(event_id)

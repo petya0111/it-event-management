@@ -35,3 +35,10 @@ class CredentialsService:
 
     def reload_users(self):
         return self.user_repository.load()
+
+    def get_role(self, user_id):
+        user:User = self.user_repository.find_by_id(user_id)
+        if type(user.role) == str:
+            return user.role
+        else:
+            return user.role.name

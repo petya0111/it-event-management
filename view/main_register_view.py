@@ -3,21 +3,18 @@ from tkinter import *
 from tkinter import ttk, messagebox
 
 from controller.credentals_controller import CredentialsController
-from controller.event_controller import EventController
 from entity.user import RoleName, User
 from exception.email_alredy_registered_exception import EmailAlreadyRegisteredExcetion
 
 
 class MainRegisterView(ttk.Frame):
 
-
-    def __init__(self, winsignup, credentials_controller: CredentialsController, event_controller: EventController):
+    def __init__(self, winsignup, credentials_controller: CredentialsController):
         super().__init__(winsignup)
-        self.event_controller = event_controller
         self.winsignup = winsignup
         self.credentials_controller = credentials_controller
 
-        winsignup.title("It events App")
+        winsignup.title("IT events App")
         winsignup.maxsize(width=500, height=600)
         winsignup.minsize(width=500, height=600)
 
@@ -39,13 +36,13 @@ class MainRegisterView(ttk.Frame):
         role.place(x=80, y=220)
 
         email = Label(winsignup, text="Email :", font='Verdana 10 bold')
-        email.place(x=80, y=290)
+        email.place(x=80, y=303)
 
         password = Label(winsignup, text="Password :", font='Verdana 10 bold')
-        password.place(x=80, y=320)
+        password.place(x=80, y=333)
 
         very_pass = Label(winsignup, text="Verify Password:", font='Verdana 10 bold')
-        very_pass.place(x=80, y=350)
+        very_pass.place(x=80, y=363)
 
         # Entry Box ------------------------------------------------------------------
 
@@ -57,7 +54,7 @@ class MainRegisterView(ttk.Frame):
         password = StringVar()
         very_pass = StringVar()
         roleType = IntVar()
-        self.selected_role = "ANONYMOUS_USER"
+        self.selected_role = RoleName.ANONYMOUS_USER.name
 
         first_name = Entry(winsignup, width=40, textvariable=first_name)
         first_name.place(x=210, y=133)
@@ -71,22 +68,27 @@ class MainRegisterView(ttk.Frame):
         def role_chosen(value):
             self.selected_role = value
 
-        self.rb1 = Radiobutton(winsignup, text='ADMIN', variable=roleType, value=0, command=lambda: role_chosen("ADMIN"))
+        self.rb1 = Radiobutton(winsignup, text='ADMIN', variable=roleType, value=0,
+                               command=lambda: role_chosen("ADMIN"))
         self.rb2 = Radiobutton(winsignup, text='HOST', variable=roleType, value=1, command=lambda: role_chosen("HOST"))
-        self.rb3 = Radiobutton(winsignup, text='ANONYMOUS_USER', variable=roleType, value=2, command=lambda: role_chosen("ANONYMOUS_USER"))
+        self.rb3 = Radiobutton(winsignup, text='PARTICIPANT', variable=roleType, value=2,
+                               command=lambda: role_chosen("PARTICIPANT"))
+        self.rb4 = Radiobutton(winsignup, text='ANONYMOUS_USER', variable=roleType, value=3,
+                               command=lambda: role_chosen(RoleName.ANONYMOUS_USER.name))
         self.rb1.place(x=200, y=220)
         self.rb2.place(x=200, y=238)
         self.rb3.place(x=200, y=256)
-        self.rb3.invoke()
+        self.rb4.place(x=200, y=276)
+        self.rb4.invoke()
 
         user_name = Entry(winsignup, width=40, textvariable=email_var)
-        user_name.place(x=210, y=293)
+        user_name.place(x=210, y=303)
 
         password = Entry(winsignup, width=40, textvariable=password)
-        password.place(x=210, y=323)
+        password.place(x=210, y=333)
 
         very_pass = Entry(winsignup, width=40, show="*", textvariable=very_pass)
-        very_pass.place(x=210, y=353)
+        very_pass.place(x=210, y=363)
 
         def action():
             if first_name.get() == "" or last_name.get() == "" or bio.get() == "" or user_name.get() == "" or password.get() == "" or very_pass.get() == "":
@@ -125,7 +127,7 @@ class MainRegisterView(ttk.Frame):
         btn_login = Button(winsignup, text="Clear", font='Verdana 10 bold', command=partial(clear))
         btn_login.place(x=280, y=413)
 
-        sign_up_btn = Button(winsignup, text="Switch To Login", command=partial(switch))
+        sign_up_btn = Button(winsignup, text="Close", command=partial(switch))
         sign_up_btn.place(x=350, y=20)
 
         winsignup.mainloop()

@@ -1,6 +1,5 @@
 from tkinter import ttk
 
-from view.command.events.administrate.select_item_edit_event_command import SelectItemEditEventCommand
 from view.command.events.read.select_item_view_event_command import SelectItemViewEventCommand
 from view.components.item_list import ItemList
 from view.utils.tkinter_utils import center_resize_window
@@ -34,6 +33,7 @@ class EventMainGuestView(ttk.Frame):
         center_resize_window(parent,
                              self.item_list.winfo_width(),
                              self.item_list.winfo_height() + BUTTONS_PANEL_HEIGHT_PX)
+
         # add buttons
         buttons_frame = ttk.Frame(self, padding="20 10 20 10")
         buttons_frame.grid(column=0, row=1, sticky="nsew")

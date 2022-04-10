@@ -6,7 +6,7 @@ DEFAULT_ENTRY_WIDTH_PX = 250
 
 
 class ItemEnrollEventForm(Toplevel):
-    def __init__(self, parent, user_id, enroll_btn: bool, item, command, edit=False):
+    def __init__(self, parent, user_id, enroll_btn: bool, can_enroll: bool, item, command, edit=False):
         super().__init__(parent)
         self.user_id = user_id
         self.parent = parent
@@ -57,17 +57,20 @@ class ItemEnrollEventForm(Toplevel):
         self.frame.columnconfigure(0, weight=1, minsize=DEFAULT_ENTRY_WIDTH_PX)
         self.frame.columnconfigure(1, weight=1, minsize=DEFAULT_ENTRY_WIDTH_PX)
 
-        # add buttons
-        buttons_frame = ttk.Frame(self.frame, padding="20 10 20 10")
-        buttons_frame.grid(column=0, row=len(self.columns), columnspan=2, sticky=NSEW)
-        self.add_button = ttk.Button(buttons_frame, text="Enroll", padding=10, command=self.submit)
-        if enroll_btn == True:
-            self.add_button = ttk.Button(buttons_frame, text="You are going to this event", padding=10,state=DISABLED)
-        self.add_button.grid(column=1, row=0, sticky=NE, padx=40, pady=20)
+        if can_enroll:
+            # add buttons
+            buttons_frame = ttk.Frame(self.frame, padding="20 10 20 10")
+            buttons_frame.grid(column=0, row=len(self.columns), columnspan=2, sticky=NSEW)
+            if enroll_btn:
+                self.add_button = ttk.Button(buttons_frame, text="You are going to this event", padding=10,
+                                             state=DISABLED)
+            else:
+                self.add_button = ttk.Button(buttons_frame, text="Enroll", padding=10, command=self.submit)
+            self.add_button.grid(column=1, row=0, sticky=NE, padx=40, pady=20)
 
-        rows, cols = buttons_frame.grid_size()
-        for col in range(cols):
-            buttons_frame.columnconfigure(col, minsize=100, pad=30)
+            rows, cols = buttons_frame.grid_size()
+            for col in range(cols):
+                buttons_frame.columnconfigure(col, minsize=100, pad=30)
 
         # modal - capture visibility
         self.protocol("WM_DELETE_WINDOW", self.dismiss)
