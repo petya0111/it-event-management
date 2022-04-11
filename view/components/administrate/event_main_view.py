@@ -1,5 +1,6 @@
 from tkinter import ttk
 
+from controller.credentals_controller import CredentialsController
 from view.command.events.administrate.delete_events_command import DeleteEventsCommand
 from view.command.events.administrate.register_user_command import RegisterUserCommand
 from view.command.events.administrate.select_item_edit_event_command import SelectItemEditEventCommand
@@ -16,13 +17,13 @@ BUTTONS_PANEL_HEIGHT_PX = 100
 
 
 class EventMainView(ttk.Frame):
-    def __init__(self, user_id, is_admin: bool, parent, event_controller: EventController,
+    def __init__(self, user_id, is_admin: bool, parent, event_controller: EventController,credentials_controller: CredentialsController,
                  show_add_event_command: ShowAddEventCommand,
                  edit_event_command: SelectItemEditEventCommand,
                  delete_events_command: DeleteEventsCommand,
-                 register_user_command: RegisterUserCommand,
                  select_item_view_event_command: SelectItemViewEventCommand):
         super().__init__(parent, padding="3 3 12 12")
+        self.credentials_controller = credentials_controller
         self.select_item_view_event_command = select_item_view_event_command
         self.user_id = user_id
         self.show_add_book_command = show_add_event_command
@@ -58,9 +59,11 @@ class EventMainView(ttk.Frame):
         self.add_button = ttk.Button(buttons_frame, text="Delete Event", padding=10,
                                      command=self.delete_selected)
         self.add_button.grid(column=3, row=0, sticky="NE", padx=40, pady=20)
+            
         if is_admin:
+            self.register_user_command = RegisterUserCommand(self.credentials_controller, user_id)
             self.add_button = ttk.Button(buttons_frame, text="Register User", padding=10,
-                                         command=register_user_command)
+                                         command=self.register_user_command)
             self.add_button.grid(column=4, row=0, sticky="NE", padx=40, pady=20)
 
         rows, cols = buttons_frame.grid_size()

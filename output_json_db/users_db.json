@@ -1,6 +1,6 @@
 [
     {
-        "id": "5947a79b-b90f-11ec-b365-2c6e85088ae9",
+        "id": "6c540571-b995-11ec-a930-2c6e85088ae9",
         "email": "maria@abc.bg",
         "password": "Test123",
         "first_name": "Maria",
@@ -12,7 +12,7 @@
         "_class": "User"
     },
     {
-        "id": "5947a79c-b90f-11ec-9062-2c6e85088ae9",
+        "id": "6c540572-b995-11ec-991a-2c6e85088ae9",
         "email": "dimitar@abc.bg",
         "password": "Test123",
         "first_name": "Dimitar",
@@ -24,7 +24,7 @@
         "_class": "User"
     },
     {
-        "id": "5947a79d-b90f-11ec-9f5e-2c6e85088ae9",
+        "id": "6c542c4c-b995-11ec-9a51-2c6e85088ae9",
         "email": "ivo@abc.bg",
         "password": "Test123",
         "first_name": "Ivan",
@@ -36,7 +36,7 @@
         "_class": "User"
     },
     {
-        "id": "5947a79e-b90f-11ec-a19a-2c6e85088ae9",
+        "id": "6c542c4d-b995-11ec-a417-2c6e85088ae9",
         "email": "ivo2@abc.bg",
         "password": "Test123",
         "first_name": "Ivan2",
@@ -48,7 +48,7 @@
         "_class": "User"
     },
     {
-        "id": "5947a79f-b90f-11ec-8c09-2c6e85088ae9",
+        "id": "6c542c4e-b995-11ec-a3e2-2c6e85088ae9",
         "email": "anonymus@abc.bg",
         "password": "Test123",
         "first_name": "Mitko",
@@ -56,18 +56,6 @@
         "bio": "Fullstack Dev",
         "role": "ANONYMOUS_USER",
         "is_active": true,
-        "_module": "entity.user",
-        "_class": "User"
-    },
-    {
-        "id": "92ee6988-b90f-11ec-8335-2c6e85088ae9",
-        "email": "aaaaaaa",
-        "password": "aaaaaaa",
-        "first_name": "aaaaaaa",
-        "last_name": "aaaaaaa",
-        "bio": "aaaaaaa",
-        "role": "ADMIN",
-        "is_active": false,
         "_module": "entity.user",
         "_class": "User"
     }
