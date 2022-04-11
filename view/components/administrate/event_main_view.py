@@ -17,7 +17,7 @@ BUTTONS_PANEL_HEIGHT_PX = 100
 
 
 class EventMainView(ttk.Frame):
-    def __init__(self, user_id, is_admin: bool, parent, event_controller: EventController,credentials_controller: CredentialsController,
+    def __init__(self, user_id,  parent, event_controller: EventController,credentials_controller: CredentialsController,
                  show_add_event_command: ShowAddEventCommand,
                  edit_event_command: SelectItemEditEventCommand,
                  delete_events_command: DeleteEventsCommand,
@@ -59,7 +59,7 @@ class EventMainView(ttk.Frame):
         self.add_button = ttk.Button(buttons_frame, text="Delete Event", padding=10,
                                      command=self.delete_selected)
         self.add_button.grid(column=3, row=0, sticky="NE", padx=40, pady=20)
-            
+        is_admin: bool = self.credentials_controller.get_role(user_id) == "ADMIN"
         if is_admin:
             self.register_user_command = RegisterUserCommand(self.credentials_controller, user_id)
             self.add_button = ttk.Button(buttons_frame, text="Register User", padding=10,

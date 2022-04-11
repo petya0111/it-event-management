@@ -65,10 +65,9 @@ class MainEventsHomeView(ttk.Frame):
         menu_events.add_command(label="Edit Event", command=self.edit_event_command)
         menu_events.add_command(label="Delete Event", command=self.delete_events_command)
 
-        is_admin: bool = self.credentials_controller.get_role(user_id) == "ADMIN"
 
         # Show items
-        self.item_list = EventMainView(user_id, is_admin, self.root, self.event_controller,self.credentials_controller,
+        self.item_list = EventMainView(user_id,  self.root, self.event_controller,self.credentials_controller,
                                        self.show_add_event_command,
                                        self.edit_event_command,
                                        self.delete_events_command,
