@@ -4,7 +4,7 @@ from enum import Enum
 class RoleName(Enum):
     ADMIN = 1,
     HOST = 2,
-    PARTICIPANT = 3
+    REGISTERED_USER = 3
     ANONYMOUS_USER = 4
 
     @classmethod

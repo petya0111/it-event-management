@@ -9,7 +9,7 @@ from exception.email_alredy_registered_exception import EmailAlreadyRegisteredEx
 
 class MainRegisterView(ttk.Frame):
 
-    def __init__(self, winsignup, credentials_controller: CredentialsController):
+    def __init__(self, winsignup, admin_view: bool, credentials_controller: CredentialsController):
         super().__init__(winsignup)
         self.winsignup = winsignup
         self.credentials_controller = credentials_controller
@@ -32,17 +32,17 @@ class MainRegisterView(ttk.Frame):
         bio = Label(winsignup, text="Bio :", font='Verdana 10 bold')
         bio.place(x=80, y=190)
 
-        role = Label(winsignup, text="Role :", font='Verdana 10 bold')
-        role.place(x=80, y=220)
-
         email = Label(winsignup, text="Email :", font='Verdana 10 bold')
-        email.place(x=80, y=303)
+        email.place(x=80, y=210)
 
         password = Label(winsignup, text="Password :", font='Verdana 10 bold')
-        password.place(x=80, y=333)
+        password.place(x=80, y=240)
 
         very_pass = Label(winsignup, text="Verify Password:", font='Verdana 10 bold')
-        very_pass.place(x=80, y=363)
+        very_pass.place(x=80, y=270)
+
+        role = Label(winsignup, text="Role :", font='Verdana 10 bold')
+        role.place(x=80, y=300)
 
         # Entry Box ------------------------------------------------------------------
 
@@ -65,30 +65,37 @@ class MainRegisterView(ttk.Frame):
         bio = Entry(winsignup, width=40, textvariable=bio)
         bio.place(x=210, y=193)
 
+        user_name = Entry(winsignup, width=40, textvariable=email_var)
+        user_name.place(x=210, y=213)
+
+        password = Entry(winsignup, width=40, show="*", textvariable=password)
+        password.place(x=210, y=243)
+
+        very_pass = Entry(winsignup, width=40, show="*", textvariable=very_pass)
+        very_pass.place(x=210, y=273)
+
         def role_chosen(value):
             self.selected_role = value
 
         self.rb1 = Radiobutton(winsignup, text=RoleName.ADMIN.name, variable=roleType, value=0,
                                command=lambda: role_chosen(RoleName.ADMIN.name))
-        self.rb2 = Radiobutton(winsignup, text=RoleName.HOST.name, variable=roleType, value=1, command=lambda: role_chosen("HOST"))
-        self.rb3 = Radiobutton(winsignup, text=RoleName.PARTICIPANT.name, variable=roleType, value=2,
-                               command=lambda: role_chosen(RoleName.PARTICIPANT.name))
+        self.rb2 = Radiobutton(winsignup, text=RoleName.HOST.name, variable=roleType, value=1,
+                               command=lambda: role_chosen("HOST"))
+        self.rb3 = Radiobutton(winsignup, text=RoleName.REGISTERED_USER.name, variable=roleType, value=2,
+                               command=lambda: role_chosen(RoleName.REGISTERED_USER.name))
         self.rb4 = Radiobutton(winsignup, text=RoleName.ANONYMOUS_USER.name, variable=roleType, value=3,
                                command=lambda: role_chosen(RoleName.ANONYMOUS_USER.name))
-        self.rb1.place(x=200, y=220)
-        self.rb2.place(x=200, y=238)
-        self.rb3.place(x=200, y=256)
-        self.rb4.place(x=200, y=276)
+        self.rb1.place(x=200, y=300)
+        self.rb2.place(x=200, y=318)
+        self.rb3.place(x=200, y=336)
+        self.rb4.place(x=200, y=354)
         self.rb4.invoke()
-
-        user_name = Entry(winsignup, width=40, textvariable=email_var)
-        user_name.place(x=210, y=303)
-
-        password = Entry(winsignup, width=40, show="*", textvariable=password)
-        password.place(x=210, y=333)
-
-        very_pass = Entry(winsignup, width=40, show="*", textvariable=very_pass)
-        very_pass.place(x=210, y=363)
+        if admin_view is False:
+            role.destroy()
+            self.rb1.destroy()
+            self.rb2.destroy()
+            self.rb3.destroy()
+            self.rb4.destroy()
 
         def action():
             if first_name.get() == "" or last_name.get() == "" or bio.get() == "" or user_name.get() == "" or password.get() == "" or very_pass.get() == "":
@@ -131,3 +138,7 @@ class MainRegisterView(ttk.Frame):
         sign_up_btn.place(x=350, y=20)
 
         winsignup.mainloop()
+
+    def dismiss(self):
+        self.grab_release()
+        self.destroy()

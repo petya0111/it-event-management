@@ -8,6 +8,7 @@ from entity.user import RoleName, User
 from exception.credentials_exception import CredentialsException
 from view.main_guest_view import MainGuestView
 from view.main_events_home_view import MainEventsHomeView
+from view.main_register_view import MainRegisterView
 
 
 class MainLoginHomeView(ttk.Frame):
@@ -56,7 +57,7 @@ class MainLoginHomeView(ttk.Frame):
                                                credentials_controller.get_logged_user())
                 event_controller.view = main_view
                 event_root.mainloop()
-            elif user.role == RoleName.ANONYMOUS_USER.name or user.role == RoleName.PARTICIPANT.name:
+            elif user.role == RoleName.ANONYMOUS_USER.name or user.role == RoleName.REGISTERED_USER.name:
                 event_root = Tk()
                 event_controller.reload_events()
                 main_view = MainGuestView(event_root, event_controller, credentials_controller)
@@ -78,6 +79,13 @@ class MainLoginHomeView(ttk.Frame):
                 except Exception as e:
                     messagebox.showerror("Error", f"Login failed : {str(e)}", parent=win)
 
+        def register():
+            self.credentials_controller.reload_users()
+            root = Tk()
+            login_view = MainRegisterView(root,False, self.credentials_controller)
+            credentials_controller.view = login_view
+            root.mainloop()
+
         def login_as_anonymus():
             user = self.credentials_controller.register(
                 User(first_name="Anonymus", last_name="Anonymus", email="111", password="111",
@@ -98,3 +106,6 @@ class MainLoginHomeView(ttk.Frame):
 
         btn_login = Button(win, text="Login as anonymus", font='Verdana 10 bold', command=partial(login_as_anonymus))
         btn_login.place(x=200, y=333)
+
+        btn_login = Button(win, text="Register", font='Verdana 10 bold', command=partial(register))
+        btn_login.place(x=200, y=373)

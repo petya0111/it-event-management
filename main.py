@@ -52,23 +52,25 @@ if __name__ == '__main__':
                  role=RoleName.HOST, group_id=python_devs_group.id)
     participantt1 = User(first_name='Dimitar', last_name='Hristov', email="dimitar@abc.bg", password="Test123",
                          bio="Backend Dev", is_active=True,
-                         role=RoleName.PARTICIPANT, group_id=python_devs_group.id)
+                         role=RoleName.REGISTERED_USER, group_id=python_devs_group.id)
     anonymus1 = User(first_name='Mitko', last_name='Dimitrov', email="anonymus@abc.bg", password="Test123",
                      bio="Fullstack Dev", is_active=True,
                      role=RoleName.ANONYMOUS_USER, group_id=python_devs_group.id)
 
-    users = [admin11, participantt1, host1,host2,anonymus1]
+    users = [admin11, participantt1, host1, host2, anonymus1]
     for u in users:
         user_service.create(u)
     print("---Users---")
     print_repo_entity(user_repository)
-
+    now = datetime.now()
     python_latest_trends = EventMeeting(name="Latest trends of python",
                                         description="Get to know latest trends in clean code",
                                         # creation_date=datetime.fromisoformat('2022-02-22T10:30:00'),
                                         registration_end_date=datetime.fromisoformat('2022-04-22T11:00:00'),
-                                        start_datetime=datetime.fromisoformat('2022-04-22T10:30:00'),
-                                        end_datetime=datetime.fromisoformat('2022-04-22T18:30:00'),
+                                        start_date=now.strftime("%m/%d/%Y"),
+                                        start_time=now.strftime("%H:%M:%S"),
+                                        end_time=now.strftime("%H:%M:%S"),
+                                        end_date=now.strftime("%m/%d/%Y"),
                                         place="Online",
                                         is_public=True,
                                         capacity=300,
@@ -77,18 +79,20 @@ if __name__ == '__main__':
                                         event_status=EventStatusName(EventStatusName.OPEN_FOR_REGISTRATIONS),
                                         registered_user_ids=[])
     java_latest_trends = EventMeeting(name="Latest trends of Java",
-                                        description="Get to know latest trends in clean code",
-                                        # creation_date=datetime.fromisoformat('2022-02-22T10:30:00'),
-                                        registration_end_date=datetime.fromisoformat('2022-04-22T11:00:00'),
-                                        start_datetime=datetime.fromisoformat('2022-04-22T10:30:00'),
-                                        end_datetime=datetime.fromisoformat('2022-04-22T18:30:00'),
-                                        place="Online",
-                                        is_public=True,
-                                        capacity=300,
-                                        price=0,
-                                        creation_user_id=host2.id,
-                                        event_status=EventStatusName(EventStatusName.OPEN_FOR_REGISTRATIONS),
-                                        registered_user_ids=[])
+                                      description="Get to know latest trends in clean code",
+                                      # creation_date=datetime.fromisoformat('2022-02-22T10:30:00'),
+                                      registration_end_date=datetime.fromisoformat('2022-04-22T11:00:00'),
+                                      start_date=now.strftime("%m/%d/%Y"),
+                                      start_time=now.strftime("%H:%M:%S"),
+                                      end_time=now.strftime("%H:%M:%S"),
+                                      end_date=now.strftime("%m/%d/%Y"),
+                                      place="Online",
+                                      is_public=True,
+                                      capacity=300,
+                                      price=0,
+                                      creation_user_id=host2.id,
+                                      event_status=EventStatusName(EventStatusName.OPEN_FOR_REGISTRATIONS),
+                                      registered_user_ids=[])
 
     event_service.create_event_from_host(host1.id, python_latest_trends)
     event_service.create_event_from_host(host2.id, java_latest_trends)

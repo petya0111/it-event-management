@@ -234,27 +234,31 @@ class EventMeeting:
     def __init__(self,
                  name: str = None,
                  description: str = None,
+                 creation_user_id: str = None,
                  registration_end_date: datetime = None,
-                 start_datetime: datetime = None,
-                 end_datetime: datetime = None,
+                 start_date: str = None,
+                 start_time: str = None,
+                 end_date: str = None,
+                 end_time: str = None,
                  place: str = None,
                  is_public: bool = None,
                  capacity: int = None,
                  price: float = None,
                  event_status: EventStatusName = EventStatusName.DRAFT,
-                 registered_user_ids: list[str] = tuple(),
+                 registered_user_ids: list[str]=[],
                  # event_post: EventPost = None,
                  # event_ticket: EventTicket = None,
                  # event_invitation: EventInvitation = None,
-                 creation_user_id: str = None,
                  id=None):
         self.id = id
         self.name = name
         self.description = description
         self.creation_user_id = creation_user_id
         self.registration_end_date = str(registration_end_date)
-        self.start_datetime = str(start_datetime)
-        self.end_datetime = str(end_datetime)
+        self.start_date = str(start_date)
+        self.start_time = str(start_time)
+        self.end_date = str(end_date)
+        self.end_time = str(end_time)
         self.place = place
         self.is_public = is_public
         self.capacity = capacity
@@ -270,14 +274,16 @@ class EventMeeting:
             'id': self.id,
             'name': self.name,
             "description": self.description,
+            "creation_user_id": self.creation_user_id,
             "registration_end_date": self.registration_end_date,
-            "start_datetime": self.start_datetime,
-            "end_datetime": self.end_datetime,
+            "start_date": self.start_date,
+            "start_time": self.start_time,
+            "end_date": self.end_date,
+            "end_time": self.end_time,
             "place": self.place,
             "is_public": self.is_public,
             "capacity": self.capacity,
             "price": self.price,
-            "creation_user_id": self.creation_user_id,
             "event_status": self.status_name.name,
             "registered_user_ids": self.registered_user_ids,
             # "event_post": self.event_post,
@@ -288,4 +294,4 @@ class EventMeeting:
         }
 
     def get_formatted_str(self):
-        return f'| {self.id:24s} | {self.name:30.30s} | {self.description:40.40s} |  {str(self.start_datetime):20.20s} | {str(self.place):15.15s} |'
+        return f'| {self.id:24s} | {self.name:30.30s} | {self.description:40.40s} |  {str(self.start_date):20.20s} | {str(self.place):15.15s} |'

@@ -11,7 +11,7 @@ class RegisterUserCommand:
 
     def __call__(self):
         root = Tk()
-        login_view = MainRegisterView(root, self.credentials_controller)
+        login_view = MainRegisterView(root,True, self.credentials_controller)
         self.view = login_view
         root.mainloop()
 

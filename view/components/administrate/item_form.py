@@ -2,6 +2,8 @@ from tkinter import *
 from tkinter import ttk
 from typing import Iterable
 
+from tkcalendar import DateEntry
+
 from view.utils.tkinter_utils import center_resize_window
 
 DEFAULT_ENTRY_WIDTH_PX = 250
@@ -19,7 +21,7 @@ class ItemForm(Toplevel):
         self.frame = ttk.Frame(self, padding="30 30 30 30")
         self.title("Add Event")
         self.frame.grid(row=0, column=0, sticky=NSEW)
-        center_resize_window(self)
+        center_resize_window(self,width=600,height=500)
 
         self.models = []
         self.types = []
@@ -47,8 +49,12 @@ class ItemForm(Toplevel):
 
             # add entries
             entry = ttk.Entry(self.frame, textvariable=model)
+            date_fields = ['registration_end_date', 'start_date', 'end_date']
+            if col in date_fields:
+                entry = DateEntry(self.frame, selectmode='day', textvariable=str(model), date_pattern='dd/MM/yyyy')
             entry.grid(column=1, row=i, sticky=EW)
-            if col == 'id':
+            disable_entries = ['id', 'registered_user_ids', 'creation_user_id', '_module', '_class']
+            if col in disable_entries:
                 entry.configure(state=DISABLED)
             self.entries.append(entry)
 
@@ -64,10 +70,10 @@ class ItemForm(Toplevel):
         buttons_frame.grid(column=0, row=len(self.columns), columnspan=2, sticky=NSEW)
 
         self.add_button = ttk.Button(buttons_frame, text="Submit", padding=10, command=self.submit)
-        self.add_button.grid(column=1, row=0, sticky=(N, E), padx=40, pady=20)
+        self.add_button.grid(column=1, row=0, sticky=NE, padx=40, pady=20)
 
         self.add_button = ttk.Button(buttons_frame, text="Reset", padding=10, command=self.reset)
-        self.add_button.grid(column=2, row=0, sticky=(N, E), padx=40, pady=20)
+        self.add_button.grid(column=2, row=0, sticky=NE, padx=40, pady=20)
 
         rows, cols = buttons_frame.grid_size()
         for col in range(cols):

@@ -1,12 +1,13 @@
 from tkinter import *
 from tkinter import ttk
 from view.utils.tkinter_utils import center_resize_window
+from tkcalendar import DateEntry
 
 DEFAULT_ENTRY_WIDTH_PX = 250
 
 
 class ItemEditEventForm(Toplevel):
-    def __init__(self, parent,user_id, item, command, edit=False):
+    def __init__(self, parent, user_id, item, command, edit=False):
         super().__init__(parent)
         self.user_id = user_id
         self.parent = parent
@@ -17,7 +18,7 @@ class ItemEditEventForm(Toplevel):
         self.frame = ttk.Frame(self, padding="20 20 20 20")
         self.title("Edit Event")
         self.frame.grid(row=0, column=0, sticky=NSEW)
-        center_resize_window(self)
+        center_resize_window(self,width=600,height=500)
 
         self.models = []
         self.types = []
@@ -42,11 +43,14 @@ class ItemEditEventForm(Toplevel):
 
             # add labels
             ttk.Label(self.frame, text=col.title(), justify=LEFT).grid(column=0, row=i, sticky=EW)
-
-            # add entries
             entry = ttk.Entry(self.frame, textvariable=model)
+            date_fields = ['registration_end_date', 'start_datetime', 'end_datetime']
+            if col in date_fields:
+                entry = DateEntry(self.frame, selectmode='day', textvariable=str(model),date_pattern='dd/MM/yyyy')
             entry.grid(column=1, row=i, sticky=EW)
-            if col == 'id':
+            # add entries
+            disable_entries = ['id', 'registered_user_ids', 'creation_user_id', '_module', '_class']
+            if col in disable_entries:
                 entry.configure(state=DISABLED)
             self.entries.append(entry)
 

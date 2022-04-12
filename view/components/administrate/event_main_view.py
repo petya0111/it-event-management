@@ -1,6 +1,7 @@
 from tkinter import ttk
 
 from controller.credentals_controller import CredentialsController
+from entity.user import RoleName
 from view.command.events.administrate.delete_events_command import DeleteEventsCommand
 from view.command.events.administrate.register_user_command import RegisterUserCommand
 from view.command.events.administrate.select_item_edit_event_command import SelectItemEditEventCommand
@@ -76,7 +77,7 @@ class EventMainView(ttk.Frame):
         if len(ids) > 0:
             id_str = ids[0]
             print("edit ids", id_str)
-            if self.event_controller.is_event_from_same_host_id(id_str, self.user_id):
+            if self.event_controller.is_event_from_same_host_id(id_str, self.user_id) or self.credentials_controller.get_role(self.user_id) == RoleName.ADMIN.name:
                 return self.edit_event_command(id_str)
             else:
                 return self.select_item_view_event_command(id_str)

@@ -1,3 +1,4 @@
+from datetime import datetime
 
 from entity.event_meeting import EventMeeting, EventStatusName
 from service.event_service import EventService
@@ -62,17 +63,21 @@ class EventController():
         return self.service.load()
 
     def show_add_event(self, user_id: str):
+        now = datetime.now()
+        day =now.strftime("%H:%M:%S")
         form = ItemForm(self.view, user_id,
                         EventMeeting(name="", description="",
                                      # creation_date=None,
                                      registration_end_date=None,
-                                     start_datetime=None,
-                                     end_datetime=None,
+                                     start_date=day,
+                                     start_time='12:00:00',
+                                     end_date=day,
+                                     end_time='12:00:00',
                                      place="",
                                      is_public=None,
                                      capacity=0,
                                      price=0,
-                                     creation_user_id=None,  # TODO
+                                     creation_user_id=None,
                                      event_status=EventStatusName(EventStatusName.OPEN_FOR_REGISTRATIONS),
                                      registered_user_ids=[]),
                         AddEventCommand(self, user_id))
@@ -82,4 +87,4 @@ class EventController():
 
     def show_enroll_event(self, event,can_enroll, user_id):
         enroll_btn = self.service.is_registered_event(event.id,user_id)
-        form = ItemEnrollEventForm(self.view, user_id,enroll_btn,can_enroll, item=event, command=EnrollEventCommand(self, user_id, event))
+        form = ItemEnrollEventForm(self.view, user_id,enroll_btn,can_enroll, item=event, command=EnrollEventCommand(self, user_id=user_id,event= event))

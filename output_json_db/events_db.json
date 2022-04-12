@@ -1,37 +1,43 @@
 [
     {
-        "id": "e35d0aeb-b99b-11ec-bce2-2c6e85088ae9",
+        "id": "46e08f2c-ba9a-11ec-b585-2c6e85088ae9",
         "name": "Latest trends of python",
         "description": "Get to know latest trends in clean code",
+        "creation_user_id": "46de4506-ba9a-11ec-a919-2c6e85088ae9",
         "registration_end_date": "2022-04-22 11:00:00",
-        "start_datetime": "2022-04-22 10:30:00",
-        "end_datetime": "2022-04-22 18:30:00",
+        "start_date": "04/12/2022",
+        "start_time": "22:53:51",
+        "end_date": "04/12/2022",
+        "end_time": "22:53:51",
         "place": "Online",
         "is_public": true,
         "capacity": 300,
         "price": 0,
-        "creation_user_id": "e35ce3d0-b99b-11ec-97a4-2c6e85088ae9",
         "event_status": "OPEN_FOR_REGISTRATIONS",
         "registered_user_ids": [
-            "e35ce3cf-b99b-11ec-bdf6-2c6e85088ae9"
+            "46de4505-ba9a-11ec-b8e0-2c6e85088ae9"
         ],
         "_module": "entity.event_meeting",
         "_class": "EventMeeting"
     },
     {
-        "id": "e35d8001-b99b-11ec-a03d-2c6e85088ae9",
+        "id": "46e17976-ba9a-11ec-8112-2c6e85088ae9",
         "name": "Latest trends of Java",
         "description": "Get to know latest trends in clean code",
+        "creation_user_id": "46de4507-ba9a-11ec-8218-2c6e85088ae9",
         "registration_end_date": "2022-04-22 11:00:00",
-        "start_datetime": "2022-04-22 10:30:00",
-        "end_datetime": "2022-04-22 18:30:00",
+        "start_date": "04/12/2022",
+        "start_time": "22:53:51",
+        "end_date": "04/12/2022",
+        "end_time": "22:53:51",
         "place": "Online",
         "is_public": true,
         "capacity": 300,
         "price": 0,
-        "creation_user_id": "e35ce3d1-b99b-11ec-b15d-2c6e85088ae9",
         "event_status": "OPEN_FOR_REGISTRATIONS",
-        "registered_user_ids": [],
+        "registered_user_ids": [
+            "46de4505-ba9a-11ec-b8e0-2c6e85088ae9"
+        ],
         "_module": "entity.event_meeting",
         "_class": "EventMeeting"
     }

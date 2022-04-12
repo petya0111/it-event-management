@@ -44,10 +44,10 @@ class MainGuestView(ttk.Frame):
         menu_file.add_command(label="Exit", command=exit_command, underline=1, accelerator='Ctrl-Shift-X')
         root.bind_all("<Control-Shift-KeyPress-X>", exit_command)
 
-        self.view_event_command = SelectItemViewEventCommand(event_controller,
-                                                             credentials_controller.get_role(
+        self.view_event_command = SelectItemViewEventCommand(event_controller=event_controller,
+                                                             can_enroll=credentials_controller.get_role(
                                                                  credentials_controller.get_logged_user()) != RoleName.ANONYMOUS_USER.name,
-                                                             self.user_id)
+                                                             user_id=self.user_id)
         self.list_events_command = ListEventsCommand(event_controller)
 
         # Books menu

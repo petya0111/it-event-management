@@ -1,6 +1,6 @@
 [
     {
-        "id": "e35ce3ce-b99b-11ec-b3b7-2c6e85088ae9",
+        "id": "46de4504-ba9a-11ec-9670-2c6e85088ae9",
         "email": "maria@abc.bg",
         "password": "Test123",
         "first_name": "Maria",
@@ -12,19 +12,19 @@
         "_class": "User"
     },
     {
-        "id": "e35ce3cf-b99b-11ec-bdf6-2c6e85088ae9",
+        "id": "46de4505-ba9a-11ec-b8e0-2c6e85088ae9",
         "email": "dimitar@abc.bg",
         "password": "Test123",
         "first_name": "Dimitar",
         "last_name": "Hristov",
         "bio": "Backend Dev",
-        "role": "PARTICIPANT",
+        "role": "REGISTERED_USER",
         "is_active": true,
         "_module": "entity.user",
         "_class": "User"
     },
     {
-        "id": "e35ce3d0-b99b-11ec-97a4-2c6e85088ae9",
+        "id": "46de4506-ba9a-11ec-a919-2c6e85088ae9",
         "email": "ivo@abc.bg",
         "password": "Test123",
         "first_name": "Ivan",
@@ -36,7 +36,7 @@
         "_class": "User"
     },
     {
-        "id": "e35ce3d1-b99b-11ec-b15d-2c6e85088ae9",
+        "id": "46de4507-ba9a-11ec-8218-2c6e85088ae9",
         "email": "ivo2@abc.bg",
         "password": "Test123",
         "first_name": "Ivan2",
@@ -48,7 +48,7 @@
         "_class": "User"
     },
     {
-        "id": "e35ce3d2-b99b-11ec-8a8c-2c6e85088ae9",
+        "id": "46de4508-ba9a-11ec-a268-2c6e85088ae9",
         "email": "anonymus@abc.bg",
         "password": "Test123",
         "first_name": "Mitko",

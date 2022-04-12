@@ -1,18 +1,18 @@
 [
     {
-        "id": "e35cbd2e-b99b-11ec-8ea1-2c6e85088ae9",
+        "id": "46de1df6-ba9a-11ec-92dc-2c6e85088ae9",
         "name": "Python Advanced",
         "description": "python user group of professionals",
         "user_ids": [],
         "event_ids": [],
         "allowed_event_ids_for_group": [
-            "e35d0aeb-b99b-11ec-bce2-2c6e85088ae9"
+            "46e08f2c-ba9a-11ec-b585-2c6e85088ae9"
         ],
         "_module": "entity.group",
         "_class": "Group"
     },
     {
-        "id": "e35ce3cd-b99b-11ec-bcdd-2c6e85088ae9",
+        "id": "46de4503-ba9a-11ec-afcc-2c6e85088ae9",
         "name": "Python Devs Beginners",
         "description": "Python Group",
         "user_ids": [],
