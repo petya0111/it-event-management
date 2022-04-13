@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from controller.credentals_controller import CredentialsController
 from controller.event_controller import EventController
@@ -63,14 +63,20 @@ if __name__ == '__main__':
     print("---Users---")
     print_repo_entity(user_repository)
     now = datetime.now()
+    two_hours_later = now + timedelta(hours=2)
+    two_hours_day = two_hours_later.strftime("%Y-%m-%d")
+    two_hours_time = two_hours_later.strftime("%H:%M:%S")
+    day =now.strftime("%Y-%m-%d")
+    time = now.strftime("%H:%M:%S")
+
     python_latest_trends = EventMeeting(name="Latest trends of python",
                                         description="Get to know latest trends in clean code",
                                         # creation_date=datetime.fromisoformat('2022-02-22T10:30:00'),
-                                        registration_end_date=datetime.fromisoformat('2022-04-22T11:00:00'),
-                                        start_date=now.strftime("%m/%d/%Y"),
-                                        start_time=now.strftime("%H:%M:%S"),
-                                        end_time=now.strftime("%H:%M:%S"),
-                                        end_date=now.strftime("%m/%d/%Y"),
+                                        registration_end_date=datetime.fromisoformat(f"{two_hours_day} {two_hours_time}"),
+                                        start_date=day,
+                                        start_time=time,
+                                        end_time=two_hours_time,
+                                        end_date=two_hours_day,
                                         place="Online",
                                         is_public=True,
                                         capacity=300,
@@ -81,11 +87,11 @@ if __name__ == '__main__':
     java_latest_trends = EventMeeting(name="Latest trends of Java",
                                       description="Get to know latest trends in clean code",
                                       # creation_date=datetime.fromisoformat('2022-02-22T10:30:00'),
-                                      registration_end_date=datetime.fromisoformat('2022-04-22T11:00:00'),
-                                      start_date=now.strftime("%m/%d/%Y"),
-                                      start_time=now.strftime("%H:%M:%S"),
-                                      end_time=now.strftime("%H:%M:%S"),
-                                      end_date=now.strftime("%m/%d/%Y"),
+                                      registration_end_date=datetime.fromisoformat(f"{two_hours_day}T{two_hours_time}"),
+                                      start_date=day,
+                                      start_time=time,
+                                      end_time=two_hours_day,
+                                      end_date=two_hours_time,
                                       place="Online",
                                       is_public=True,
                                       capacity=300,

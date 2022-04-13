@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from entity.event_meeting import EventMeeting, EventStatusName
 from service.event_service import EventService
@@ -64,15 +64,19 @@ class EventController():
 
     def show_add_event(self, user_id: str):
         now = datetime.now()
-        day =now.strftime("%H:%M:%S")
+        two_hours_later = now + timedelta(hours=2)
+        two_hours_day = two_hours_later.strftime("%Y-%m-%d")
+        two_hours_time = two_hours_later.strftime("%H:%M:%S")
+        day = now.strftime("%Y-%m-%d")
+        time = now.strftime("%H:%M:%S")
         form = ItemForm(self.view, user_id,
                         EventMeeting(name="", description="",
                                      # creation_date=None,
-                                     registration_end_date=None,
+                                     registration_end_date=datetime.fromisoformat(f"{two_hours_day} {two_hours_time}"),
                                      start_date=day,
-                                     start_time='12:00:00',
-                                     end_date=day,
-                                     end_time='12:00:00',
+                                     start_time=time,
+                                     end_time=two_hours_time,
+                                     end_date=two_hours_day,
                                      place="",
                                      is_public=None,
                                      capacity=0,

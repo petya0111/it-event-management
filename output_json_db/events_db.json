@@ -1,43 +1,41 @@
 [
     {
-        "id": "46e08f2c-ba9a-11ec-b585-2c6e85088ae9",
+        "id": "2c031b79-bb45-11ec-bafa-2c6e85088ae9",
         "name": "Latest trends of python",
         "description": "Get to know latest trends in clean code",
-        "creation_user_id": "46de4506-ba9a-11ec-a919-2c6e85088ae9",
-        "registration_end_date": "2022-04-22 11:00:00",
-        "start_date": "04/12/2022",
-        "start_time": "22:53:51",
-        "end_date": "04/12/2022",
-        "end_time": "22:53:51",
+        "creation_user_id": "2c02cd6c-bb45-11ec-93d0-2c6e85088ae9",
+        "registration_end_date": "2022-04-13 21:17:10",
+        "start_date": "2022-04-13",
+        "start_time": "19:17:10",
+        "end_date": "2022-04-13",
+        "end_time": "21:17:10",
         "place": "Online",
         "is_public": true,
         "capacity": 300,
         "price": 0,
         "event_status": "OPEN_FOR_REGISTRATIONS",
         "registered_user_ids": [
-            "46de4505-ba9a-11ec-b8e0-2c6e85088ae9"
+            "2c02cd6b-bb45-11ec-a82e-2c6e85088ae9"
         ],
         "_module": "entity.event_meeting",
         "_class": "EventMeeting"
     },
     {
-        "id": "46e17976-ba9a-11ec-8112-2c6e85088ae9",
+        "id": "2c04c93e-bb45-11ec-a481-2c6e85088ae9",
         "name": "Latest trends of Java",
         "description": "Get to know latest trends in clean code",
-        "creation_user_id": "46de4507-ba9a-11ec-8218-2c6e85088ae9",
-        "registration_end_date": "2022-04-22 11:00:00",
-        "start_date": "04/12/2022",
-        "start_time": "22:53:51",
-        "end_date": "04/12/2022",
-        "end_time": "22:53:51",
+        "creation_user_id": "2c02cd6d-bb45-11ec-8faf-2c6e85088ae9",
+        "registration_end_date": "2022-04-13 21:17:10",
+        "start_date": "2022-04-13",
+        "start_time": "19:17:10",
+        "end_date": "21:17:10",
+        "end_time": "2022-04-13",
         "place": "Online",
         "is_public": true,
         "capacity": 300,
         "price": 0,
         "event_status": "OPEN_FOR_REGISTRATIONS",
-        "registered_user_ids": [
-            "46de4505-ba9a-11ec-b8e0-2c6e85088ae9"
-        ],
+        "registered_user_ids": [],
         "_module": "entity.event_meeting",
         "_class": "EventMeeting"
     }
