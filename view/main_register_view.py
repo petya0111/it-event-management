@@ -93,10 +93,22 @@ class MainRegisterView(ttk.Frame):
             self.rb2.invoke()
 
         def action():
+            special_ch = ['~', '`', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '+', '=', '{', '}',
+                          '[', ']', '|', '\\', '/', ':', ';', '"', "'", '<', '>', ',', '.', '?']
             if first_name.get() == "" or last_name.get() == "" or bio.get() == "" or user_name.get() == "" or password.get() == "" or very_pass.get() == "":
                 messagebox.showerror("Error", "All Fields Are Required", parent=winsignup)
             elif password.get() != very_pass.get():
                 messagebox.showerror("Error", "Password & Confirm Password Should Be Same", parent=winsignup)
+            elif len(password.get()) < 6:
+                messagebox.showerror("Error", "Password can be at least 6 characters long", parent=winsignup)
+            elif not any(ch in special_ch for ch in password.get()):
+                messagebox.showerror("Error", f"Atleast 1 special character required!", parent=self)
+            elif not any(ch.isupper() for ch in password.get()):
+                messagebox.showerror("Error", f"Atleast 1 uppercase character required!", parent=self)
+            elif not any(ch.islower() for ch in password.get()):
+                messagebox.showerror("Error", f"Atleast 1 lowercase character required!", parent=self)
+            elif not any(ch.isdigit() for ch in password.get()):
+                messagebox.showerror("Error", f"Atleast 1 number required!", parent=self)
             else:
                 try:
                     credentials_controller.register(User(first_name=first_name.get(), last_name=last_name.get(),
