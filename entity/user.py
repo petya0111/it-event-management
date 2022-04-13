@@ -23,7 +23,7 @@ class User:
 
     def __init__(self, first_name: str = None, last_name: str = None, email: str = None, password: str = None,
                  bio: str = None, is_active: bool = False,
-                 group_id: str = None, role: RoleName = RoleName.ANONYMOUS_USER, id=None):
+                 group_id: str = None, role: RoleName = RoleName.REGISTERED_USER, id=None):
         self.id = id
         self.role = role
         self.group_id = group_id

@@ -1,5 +1,6 @@
+from datetime import datetime
 from tkinter import *
-from tkinter import ttk
+from tkinter import ttk,messagebox
 from view.utils.tkinter_utils import center_resize_window
 from tkcalendar import DateEntry
 
@@ -18,7 +19,7 @@ class ItemEditEventForm(Toplevel):
         self.frame = ttk.Frame(self, padding="20 20 20 20")
         self.title("Edit Event")
         self.frame.grid(row=0, column=0, sticky=NSEW)
-        center_resize_window(self,width=600,height=500)
+        center_resize_window(self, width=600, height=500)
 
         self.models = []
         self.types = []
@@ -44,12 +45,13 @@ class ItemEditEventForm(Toplevel):
             # add labels
             ttk.Label(self.frame, text=col.title(), justify=LEFT).grid(column=0, row=i, sticky=EW)
             entry = ttk.Entry(self.frame, textvariable=model)
-            date_fields = ['registration_end_date', 'start_datetime', 'end_datetime']
+            date_fields = ['start_date', 'end_date']
             if col in date_fields:
-                entry = DateEntry(self.frame, selectmode='day', textvariable=str(model),date_pattern='dd/MM/yyyy')
+                entry = DateEntry(self.frame, selectmode='day', textvariable=str(model), date_pattern='yyyy-MM-dd')
             entry.grid(column=1, row=i, sticky=EW)
             # add entries
-            disable_entries = ['id', 'registered_user_ids', 'creation_user_id', '_module', '_class']
+            disable_entries = ['id', 'registered_user_ids', 'creation_user_id', 'registration_end_date', '_module',
+                               '_class']
             if col in disable_entries:
                 entry.configure(state=DISABLED)
             self.entries.append(entry)
@@ -85,20 +87,33 @@ class ItemEditEventForm(Toplevel):
     def submit(self):
         cls = type(self.item)
         result = cls()
-        for i, col in enumerate(self.columns):
-            str_val = self.models[i].get()
-            if self.types[i] == "int":
-                value = int(str_val)
-            elif self.types[i] == "float":
-                value = float(str_val)
-            elif self.types[i] == "str":
-                value = str_val
-            elif self.types[i] == "list":
-                value = [s.strip() for s in str_val.split(',')]
-            setattr(result, col, value)
-        print(self.command, result)
-        self.dismiss()
-        self.command(result)
+        end_day = None
+        end_time = None
+        try:
+            for i, col in enumerate(self.columns):
+                str_val = self.models[i].get()
+                if self.types[i] == "int":
+                    value = int(str_val)
+                elif self.types[i] == "float":
+                    value = float(str_val)
+                elif self.types[i] == "str":
+                    value = str_val
+                elif self.types[i] == "list":
+                    value = [s.strip() for s in str_val.split(',')]
+
+                if col == 'end_date':
+                    end_day = str_val
+                elif col == 'end_time':
+                    end_time = str_val
+                elif col == 'registration_end_date':
+                    if end_day is not None and end_time is not None:
+                        value = datetime.fromisoformat(f"{end_day} {end_time}")
+                setattr(result, col, value)
+            print(self.command, result)
+            self.dismiss()
+            self.command(result)
+        except Exception as e:
+            messagebox.showerror("Error", f"Error : {str(e)}", parent=self)
 
     def reset(self):
         for i, col in enumerate(self.columns):

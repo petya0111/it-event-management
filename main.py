@@ -66,6 +66,7 @@ if __name__ == '__main__':
     two_hours_later = now + timedelta(hours=2)
     two_hours_day = two_hours_later.strftime("%Y-%m-%d")
     two_hours_time = two_hours_later.strftime("%H:%M:%S")
+
     day =now.strftime("%Y-%m-%d")
     time = now.strftime("%H:%M:%S")
 
@@ -75,8 +76,8 @@ if __name__ == '__main__':
                                         registration_end_date=datetime.fromisoformat(f"{two_hours_day} {two_hours_time}"),
                                         start_date=day,
                                         start_time=time,
-                                        end_time=two_hours_time,
                                         end_date=two_hours_day,
+                                        end_time=two_hours_time,
                                         place="Online",
                                         is_public=True,
                                         capacity=300,
@@ -90,8 +91,30 @@ if __name__ == '__main__':
                                       registration_end_date=datetime.fromisoformat(f"{two_hours_day}T{two_hours_time}"),
                                       start_date=day,
                                       start_time=time,
-                                      end_time=two_hours_day,
-                                      end_date=two_hours_time,
+                                      end_date=two_hours_day,
+                                      end_time=two_hours_time,
+                                      place="Online",
+                                      is_public=True,
+                                      capacity=300,
+                                      price=0,
+                                      creation_user_id=host2.id,
+                                      event_status=EventStatusName(EventStatusName.OPEN_FOR_REGISTRATIONS),
+                                      registered_user_ids=[])
+    two_days_past = now - timedelta(days=2)
+
+    two_days_past_start_day = two_days_past.strftime("%Y-%m-%d")
+    two_days_past_start_time = two_days_past.strftime("%H:%M:%S")
+
+    two_days_past_end_date = two_days_past + timedelta(hours=2)
+    two_days_past_end_day = two_days_past_end_date.strftime("%Y-%m-%d")
+    two_days_past_end_time = two_days_past_end_date.strftime("%H:%M:%S")
+    javascript_latest_trends = EventMeeting(name="Latest trends of JavaScript",
+                                      description="Get to know latest trends in clean code",
+                                      start_date=two_days_past_start_day,
+                                      start_time=two_days_past_start_time,
+                                      end_date=two_days_past_end_day,
+                                      end_time=two_days_past_end_time,
+                                      registration_end_date=datetime.fromisoformat(f"{two_hours_day} {two_hours_time}"),
                                       place="Online",
                                       is_public=True,
                                       capacity=300,
@@ -102,6 +125,7 @@ if __name__ == '__main__':
 
     event_service.create_event_from_host(host1.id, python_latest_trends)
     event_service.create_event_from_host(host2.id, java_latest_trends)
+    event_service.create_event_from_host(host2.id, javascript_latest_trends)
     # event_service.add_event_post(host1.id, python_latest_trends.id, EventPost(event_id=python_latest_trends.id,
     #                                                                           text="Registrate to our new latest event for python",
     #                                                                           creation_date=datetime.fromisoformat(

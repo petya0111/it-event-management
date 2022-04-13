@@ -60,7 +60,7 @@ class EventMainView(ttk.Frame):
         self.add_button = ttk.Button(buttons_frame, text="Delete Event", padding=10,
                                      command=self.delete_selected)
         self.add_button.grid(column=3, row=0, sticky="NE", padx=40, pady=20)
-        is_admin: bool = self.credentials_controller.get_role(user_id) == "ADMIN"
+        is_admin: bool = self.credentials_controller.get_role(user_id) == RoleName.ADMIN.name
         if is_admin:
             self.register_user_command = RegisterUserCommand(self.credentials_controller, user_id)
             self.add_button = ttk.Button(buttons_frame, text="Register User", padding=10,

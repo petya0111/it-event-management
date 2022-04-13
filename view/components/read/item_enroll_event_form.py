@@ -1,3 +1,4 @@
+from datetime import datetime
 from tkinter import *
 from tkinter import ttk
 from view.utils.tkinter_utils import center_resize_window
@@ -14,10 +15,10 @@ class ItemEnrollEventForm(Toplevel):
         self.command = command
         self.edit = edit
 
-        self.frame = ttk.Frame(self, padding="30 30 30 30")
+        self.frame = ttk.Frame(self, padding="20 20 20 20")
         self.title("View Event")
         self.frame.grid(row=0, column=0, sticky=NSEW)
-        center_resize_window(self)
+        center_resize_window(self,width=600,height=450)
 
         self.models = []
         self.types = []
@@ -48,6 +49,9 @@ class ItemEnrollEventForm(Toplevel):
             entry.grid(column=1, row=i, sticky=EW)
             if col == 'id':
                 entry.configure(state=DISABLED)
+            if col == 'registration_end_date':
+                self.reg_end_date = model.get()
+
             self.entries.append(entry)
 
         # make form resizable
@@ -66,6 +70,9 @@ class ItemEnrollEventForm(Toplevel):
                                              state=DISABLED)
             else:
                 self.add_button = ttk.Button(buttons_frame, text="Enroll", padding=10, command=self.submit)
+            if datetime.fromisoformat(self.reg_end_date) < datetime.now():
+                self.add_button = ttk.Button(buttons_frame, text="Expired event", padding=10,
+                                             state=DISABLED)
             self.add_button.grid(column=1, row=0, sticky=NE, padx=40, pady=20)
 
             rows, cols = buttons_frame.grid_size()

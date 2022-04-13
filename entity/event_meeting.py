@@ -235,11 +235,11 @@ class EventMeeting:
                  name: str = None,
                  description: str = None,
                  creation_user_id: str = None,
-                 registration_end_date: datetime = None,
                  start_date: str = None,
                  start_time: str = None,
                  end_date: str = None,
                  end_time: str = None,
+                 registration_end_date: datetime = None,
                  place: str = None,
                  is_public: bool = None,
                  capacity: int = None,
@@ -254,11 +254,11 @@ class EventMeeting:
         self.name = name
         self.description = description
         self.creation_user_id = creation_user_id
-        self.registration_end_date = str(registration_end_date)
-        self.start_date = str(start_date)
-        self.start_time = str(start_time)
-        self.end_date = str(end_date)
-        self.end_time = str(end_time)
+        self.start_date = start_date
+        self.start_time = start_time
+        self.end_date = end_date
+        self.end_time = end_time
+        self.registration_end_date = registration_end_date
         self.place = place
         self.is_public = is_public
         self.capacity = capacity
@@ -275,11 +275,11 @@ class EventMeeting:
             'name': self.name,
             "description": self.description,
             "creation_user_id": self.creation_user_id,
-            "registration_end_date": self.registration_end_date,
             "start_date": self.start_date,
             "start_time": self.start_time,
             "end_date": self.end_date,
             "end_time": self.end_time,
+            "registration_end_date": str(self.registration_end_date),
             "place": self.place,
             "is_public": self.is_public,
             "capacity": self.capacity,

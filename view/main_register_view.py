@@ -24,25 +24,25 @@ class MainRegisterView(ttk.Frame):
 
         # form data label
         first_name = Label(winsignup, text="First Name :", font='Verdana 10 bold')
-        first_name.place(x=80, y=130)
+        first_name.place(x=80, y=133)
 
         last_name = Label(winsignup, text="Last Name :", font='Verdana 10 bold')
-        last_name.place(x=80, y=160)
+        last_name.place(x=80, y=163)
 
         bio = Label(winsignup, text="Bio :", font='Verdana 10 bold')
-        bio.place(x=80, y=190)
+        bio.place(x=80, y=193)
 
         email = Label(winsignup, text="Email :", font='Verdana 10 bold')
-        email.place(x=80, y=210)
+        email.place(x=80, y=223)
 
         password = Label(winsignup, text="Password :", font='Verdana 10 bold')
-        password.place(x=80, y=240)
+        password.place(x=80, y=253)
 
         very_pass = Label(winsignup, text="Verify Password:", font='Verdana 10 bold')
-        very_pass.place(x=80, y=270)
-
-        role = Label(winsignup, text="Role :", font='Verdana 10 bold')
-        role.place(x=80, y=300)
+        very_pass.place(x=80, y=283)
+        if admin_view is True:
+            role = Label(winsignup, text="Role :", font='Verdana 10 bold')
+            role.place(x=80, y=310)
 
         # Entry Box ------------------------------------------------------------------
 
@@ -54,7 +54,7 @@ class MainRegisterView(ttk.Frame):
         password = StringVar()
         very_pass = StringVar()
         roleType = IntVar()
-        self.selected_role = RoleName.ANONYMOUS_USER.name
+        self.selected_role = RoleName.REGISTERED_USER.name
 
         first_name = Entry(winsignup, width=40, textvariable=first_name)
         first_name.place(x=210, y=133)
@@ -66,36 +66,31 @@ class MainRegisterView(ttk.Frame):
         bio.place(x=210, y=193)
 
         user_name = Entry(winsignup, width=40, textvariable=email_var)
-        user_name.place(x=210, y=213)
+        user_name.place(x=210, y=223)
 
         password = Entry(winsignup, width=40, show="*", textvariable=password)
-        password.place(x=210, y=243)
+        password.place(x=210, y=253)
 
         very_pass = Entry(winsignup, width=40, show="*", textvariable=very_pass)
-        very_pass.place(x=210, y=273)
+        very_pass.place(x=210, y=283)
 
-        def role_chosen(value):
-            self.selected_role = value
+        if admin_view is True:
+            def role_chosen(value):
+                self.selected_role = value
 
-        self.rb1 = Radiobutton(winsignup, text=RoleName.ADMIN.name, variable=roleType, value=0,
-                               command=lambda: role_chosen(RoleName.ADMIN.name))
-        self.rb2 = Radiobutton(winsignup, text=RoleName.HOST.name, variable=roleType, value=1,
-                               command=lambda: role_chosen("HOST"))
-        self.rb3 = Radiobutton(winsignup, text=RoleName.REGISTERED_USER.name, variable=roleType, value=2,
-                               command=lambda: role_chosen(RoleName.REGISTERED_USER.name))
-        self.rb4 = Radiobutton(winsignup, text=RoleName.ANONYMOUS_USER.name, variable=roleType, value=3,
-                               command=lambda: role_chosen(RoleName.ANONYMOUS_USER.name))
-        self.rb1.place(x=200, y=300)
-        self.rb2.place(x=200, y=318)
-        self.rb3.place(x=200, y=336)
-        self.rb4.place(x=200, y=354)
-        self.rb4.invoke()
-        if admin_view is False:
-            role.destroy()
-            self.rb1.destroy()
-            self.rb2.destroy()
-            self.rb3.destroy()
-            self.rb4.destroy()
+            self.rb1 = Radiobutton(winsignup, text=RoleName.ADMIN.name, variable=roleType, value=0,
+                                   command=lambda: role_chosen(RoleName.ADMIN.name))
+            self.rb2 = Radiobutton(winsignup, text=RoleName.HOST.name, variable=roleType, value=1,
+                                   command=lambda: role_chosen("HOST"))
+            self.rb3 = Radiobutton(winsignup, text=RoleName.REGISTERED_USER.name, variable=roleType, value=2,
+                                   command=lambda: role_chosen(RoleName.REGISTERED_USER.name))
+            self.rb4 = Radiobutton(winsignup, text=RoleName.ANONYMOUS_USER.name, variable=roleType, value=3,
+                                   command=lambda: role_chosen(RoleName.ANONYMOUS_USER.name))
+            self.rb1.place(x=210, y=310)
+            self.rb2.place(x=210, y=328)
+            self.rb3.place(x=210, y=346)
+            self.rb4.place(x=210, y=364)
+            self.rb2.invoke()
 
         def action():
             if first_name.get() == "" or last_name.get() == "" or bio.get() == "" or user_name.get() == "" or password.get() == "" or very_pass.get() == "":
