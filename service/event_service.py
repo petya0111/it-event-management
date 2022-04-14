@@ -32,8 +32,10 @@ class EventService():
         event.creation_user_id = user_id
         event.status_name = EventStatusName.OPEN_FOR_REGISTRATIONS
         time_pattern = "([01]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]"
-        if not re.search(time_pattern,event.start_time) or not re.search(time_pattern,event.end_time):
-            raise TimePatternExcetion()
+        if not re.search(time_pattern,event.start_time):
+            raise TimePatternExcetion('start_time')
+        if not re.search(time_pattern,event.end_time):
+            raise TimePatternExcetion('end_time')
         event.registration_end_date = datetime.fromisoformat(f"{event.end_date} {event.end_time}")
         self._event_repository.create(event)
         self._event_repository.save()

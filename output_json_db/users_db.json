@@ -1,6 +1,6 @@
 [
     {
-        "id": "5935da7c-bbcd-11ec-8b63-e0d55eabcb44",
+        "id": "06ed7c29-bbfd-11ec-9a53-2c6e85088ae9",
         "email": "maria@abc.bg",
         "password": "Test123",
         "first_name": "Maria",
@@ -12,7 +12,7 @@
         "_class": "User"
     },
     {
-        "id": "5935da7d-bbcd-11ec-ac2a-e0d55eabcb44",
+        "id": "06ed7c2a-bbfd-11ec-b489-2c6e85088ae9",
         "email": "dimitar@abc.bg",
         "password": "Test123",
         "first_name": "Dimitar",
@@ -24,7 +24,7 @@
         "_class": "User"
     },
     {
-        "id": "5935da7e-bbcd-11ec-9ace-e0d55eabcb44",
+        "id": "06eda148-bbfd-11ec-abad-2c6e85088ae9",
         "email": "ivo@abc.bg",
         "password": "Test123",
         "first_name": "Ivan",
@@ -36,7 +36,7 @@
         "_class": "User"
     },
     {
-        "id": "5935da7f-bbcd-11ec-9fde-e0d55eabcb44",
+        "id": "06eda149-bbfd-11ec-a186-2c6e85088ae9",
         "email": "ivo2@abc.bg",
         "password": "Test123",
         "first_name": "Ivan2",
@@ -48,7 +48,7 @@
         "_class": "User"
     },
     {
-        "id": "5935da80-bbcd-11ec-957b-e0d55eabcb44",
+        "id": "06eda14a-bbfd-11ec-a633-2c6e85088ae9",
         "email": "anonymus@abc.bg",
         "password": "Test123",
         "first_name": "Mitko",
