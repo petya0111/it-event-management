@@ -10,8 +10,7 @@ class UserService():
         self._user_repository.create(user)
 
     def get_role(self,user_id):
-        user = self._user_repository.find_by_id(user_id)
-        return user.role.name
+        return self._user_repository.get_role_of_user(user_id)
 
     def find_all_users(self):
         self._user_repository.find_all()
@@ -21,9 +20,6 @@ class UserService():
 
     def update_data(self, user: User):
         self._user_repository.update(user)
-
-    def find_user_by_email(self, email: str):
-        self._user_repository.find_by_email(email)
 
     def find_all(self):
         self._user_repository.find_all()

@@ -17,7 +17,6 @@ class EventService():
         self._event_repository = event_repository
         self._user_repository = user_repository
 
-
     def check_permitted_to_modify(self, user_id: str):
         user = self._user_repository.find_by_id(user_id)
         if type(user.role) == str:
@@ -32,28 +31,19 @@ class EventService():
         event.creation_user_id = user_id
         event.status_name = EventStatusName.OPEN_FOR_REGISTRATIONS
         time_pattern = "([01]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]"
-        if not re.search(time_pattern,event.start_time):
+        if not re.search(time_pattern, event.start_time):
             raise TimePatternExcetion('start_time')
-        if not re.search(time_pattern,event.end_time):
+        if not re.search(time_pattern, event.end_time):
             raise TimePatternExcetion('end_time')
         event.registration_end_date = datetime.fromisoformat(f"{event.end_date} {event.end_time}")
         self._event_repository.create(event)
         self._event_repository.save()
 
-    def is_event_from_same_host_id(self,event_id,host_id):
-        event:EventMeeting = self._event_repository.find_by_id(event_id)
-        if host_id == event.creation_user_id:
-            return True
-        return False
+    def is_event_from_same_host_id(self, event_id, host_id):
+        return self._event_repository.is_event_from_same_host_id(event_id, host_id)
 
     def is_registered_event(self, event_id, user_id):
-        event: EventMeeting = self._event_repository.find_by_id(event_id)
-        if event.registered_user_ids == 0:
-            return False
-        if user_id in event.registered_user_ids:
-            return True
-        else:
-            return False
+        return self._event_repository.is_registered_event(event_id, user_id)
 
     def update_event_from_host(self, user_id: str, event: EventMeeting):
         self.check_permitted_to_modify(user_id)

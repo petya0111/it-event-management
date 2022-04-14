@@ -20,8 +20,8 @@ class EventMainGuestView(ttk.Frame):
         self.event_controller = event_controller
         self.parent = parent
         self.grid(row=0, column=0, sticky='nsew')
-        parent.rowconfigure(0, weight=1, minsize=300, pad=30)
-        parent.columnconfigure(0, weight=1, minsize=300, pad=30)
+        parent.rowconfigure(0, weight=1, minsize=300, pad=40)
+        parent.columnconfigure(0, weight=1, minsize=300, pad=40)
 
         items = event_controller.get_all_events()
         self.item_list = ItemList(self, items)
