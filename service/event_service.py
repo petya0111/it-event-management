@@ -1,3 +1,4 @@
+from datetime import datetime
 
 from dao.event_repository import EventRepository
 from dao.user_repository import UserRepository
@@ -6,12 +7,16 @@ from entity.event_meeting import EventMeeting, EventStatusName, EventPost, Event
 from entity.user import User, RoleName
 from exception.already_registered_for_event_exception import AlreadyRegisteredForEventExcetion
 from exception.not_host_modification_event_exception import NotHostCreationEventException
+import re
+
+from exception.time_pattern_exception import TimePatternExcetion
 
 
 class EventService():
     def __init__(self, event_repository: EventRepository, user_repository: UserRepository):
         self._event_repository = event_repository
         self._user_repository = user_repository
+
 
     def check_permitted_to_modify(self, user_id: str):
         user = self._user_repository.find_by_id(user_id)
@@ -26,6 +31,10 @@ class EventService():
         self.check_permitted_to_modify(user_id)
         event.creation_user_id = user_id
         event.status_name = EventStatusName.OPEN_FOR_REGISTRATIONS
+        time_pattern = "([01]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]"
+        if not re.search(time_pattern,event.start_time) or not re.search(time_pattern,event.end_time):
+            raise TimePatternExcetion()
+        event.registration_end_date = datetime.fromisoformat(f"{event.end_date} {event.end_time}")
         self._event_repository.create(event)
         self._event_repository.save()
 
@@ -46,6 +55,10 @@ class EventService():
 
     def update_event_from_host(self, user_id: str, event: EventMeeting):
         self.check_permitted_to_modify(user_id)
+        # time_pattern = "([01]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]"
+        # if not re.search(time_pattern, event.start_time) or not re.search(time_pattern, event.end_time):
+        #     raise TimePatternExcetion()
+        # event.registration_end_date = datetime.fromisoformat(f"{event.end_date} {event.end_time}")
         self._event_repository.update(event)
         self._event_repository.save()
 

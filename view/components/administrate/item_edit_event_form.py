@@ -109,11 +109,12 @@ class ItemEditEventForm(Toplevel):
                     if end_day is not None and end_time is not None:
                         value = datetime.fromisoformat(f"{end_day} {end_time}")
                 setattr(result, col, value)
-            print(self.command, result)
-            self.dismiss()
-            self.command(result)
+                self.dismiss()
+                self.command(result,self.parent)
         except Exception as e:
-            messagebox.showerror("Error", f"Error : {str(e)}", parent=self)
+            messagebox.showerror("Error", f"Error : {str(e)}", parent=self.parent)
+
+
 
     def reset(self):
         for i, col in enumerate(self.columns):
