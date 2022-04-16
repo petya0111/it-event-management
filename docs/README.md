@@ -35,7 +35,7 @@ https://github.com/petya0111/it-event-management/blob/master/docs/event_managmen
 ![Host who has not created the selected event can't modify but he can enroll](https://raw.githubusercontent.com/petya0111/it-event-management/master/docs/screens/host_not_created_event_can_enroll.png?raw=true)
 
 #### When creating event host can pick a date (from date picker) and time for event and when event is saved event_registration_date is generated in relation to end_date + end_time
-![pick a date (from date picker) and time for event](https://raw.githubusercontent.com/petya0111/it-event-management/master/docs/screens/date_picker_add_edit_event_host_view.png?raw=true)
+![pick a date (from date picker) and time for event](https://github.com/petya0111/it-event-management/blob/master/docs/screens/date_picker_add_edit_event_host_view.png?raw=true)
 
 #### Admin can add and modify their events and also register users
 ![Admin can add and moddify their events and also register users](https://raw.githubusercontent.com/petya0111/it-event-management/master/docs/screens/admin_events_view.png?raw=true)
